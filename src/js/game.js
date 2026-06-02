@@ -4,6 +4,7 @@ import { Resources, ResourceLoader } from './resources.js'
 import { Background } from './class/background.js'
 import { Cowboy } from './class/cowboy.js'
 import { Cactus } from './class/cactus.js'
+import { Bullet } from './class/bullet.js'
 
 export class Game extends Engine {
 
@@ -21,13 +22,17 @@ export class Game extends Engine {
         const loadBackground = new Background();
         this.add(loadBackground);
 
-        const spawnCowboy = new Cowboy(); 
-        this.add(spawnCowboy);
+        const loadCowboy = new Cowboy(); 
+        this.add(loadCowboy);
 
-        const spawnCactus = new Cactus();
-        this.add(spawnCactus)
+        const loadBullet = new Bullet()
+        this.add(loadBullet)
     }
 
+    spawnCactus() {
+        const loadCactus = new Cactus();
+        this.add(loadCactus);
+    }
 }
 
 new Game()
