@@ -14,7 +14,7 @@ export class Game extends Engine {
             displayMode: DisplayMode.FitScreen,
             physics: {
                 solver: SolverStrategy.Arcade,
-                gravity: new Vector(0, 800)
+                gravity: new Vector(0, 1000)
             }
         })
 
@@ -24,10 +24,8 @@ export class Game extends Engine {
     startGame() {
         this.add('start', new StartScene())
         this.add('firstscene', new FirstScene())
-        // this.add('gameScene', new *gameScene*())
 
         this.goToScene('start')
-        // this.goToScene('gameScene')
     }
 }
 

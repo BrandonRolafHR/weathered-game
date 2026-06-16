@@ -1,8 +1,7 @@
 import { ImageSource, Sound, Resource, Loader, ImageWrapping } from 'excalibur'
 
-// voeg hier jouw eigen resources toe
 const Resources = {
-
+    PlayerOne: new ImageSource('images/bassie.png'),
 }
 
 const ResourceLoader = new Loader()
