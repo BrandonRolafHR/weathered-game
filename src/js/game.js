@@ -15,7 +15,8 @@ export class Game extends Engine {
             physics: {
                 solver: SolverStrategy.Arcade,
                 gravity: new Vector(0, 1000)
-            }
+            },
+            suppressPlayButton: true
         })
 
         this.start(ResourceLoader).then(() => this.startGame())
@@ -25,7 +26,7 @@ export class Game extends Engine {
         this.add('start', new StartScene())
         this.add('firstscene', new FirstScene())
 
-        this.goToScene('start')
+        this.goToScene('firstscene')
     }
 }
 
