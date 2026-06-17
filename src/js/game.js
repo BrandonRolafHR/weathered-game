@@ -1,4 +1,13 @@
+<<<<<<< Updated upstream
 import '../css/style.css';
+=======
+import '../css/style.css'
+import { Actor, Engine, Vector, DisplayMode, SolverStrategy } from "excalibur"
+import { Resources, ResourceLoader } from './resources.js'
+import { StartScene } from './startscene.js'
+import { FirstScene } from './firstscene.js'
+import { ThunderScene } from './thunderscene.js'
+>>>>>>> Stashed changes
 
 import { Engine, Vector, DisplayMode, SolverStrategy, Keys } from 'excalibur';
 import { ResourceLoader } from './resources.js';
@@ -46,6 +55,19 @@ class Game extends Engine {
     }
   }
 
+<<<<<<< Updated upstream
+=======
+    startGame() {
+        this.add('start', new StartScene())
+        this.add('firstscene', new FirstScene())
+        
+        this.add('thunderscene', new ThunderScene())
+
+        this.goToScene('start')
+
+        this.showDebug(true)
+    }
+>>>>>>> Stashed changes
 }
 
 const game = new Game();

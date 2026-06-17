@@ -1,9 +1,16 @@
 const canvas = document.getElementById('bg');
 const ctx = canvas.getContext('2d');
 
+<<<<<<< Updated upstream
 function resize() {
   const el = document.getElementById('scene');
   const dpr = window.devicePixelRatio || 1;
+=======
+// Verwijderen
+import { ThunderScene } from "./thunderscene.js"
+
+export class StartScene extends Scene {
+>>>>>>> Stashed changes
 
   canvas.width = Math.round(el.clientWidth * dpr);
   canvas.height = Math.round(el.clientHeight * dpr);
@@ -212,8 +219,73 @@ function drawRain(stormT,windT){
       d.x=Math.random();
     }
 
+<<<<<<< Updated upstream
     if(d.x<-0.05){
       d.x=1.05;
+=======
+    createMainMenu() {
+
+        // TITLE PLACEHOLDER
+        const titleBox = new Actor({
+            pos: new Vector(400, 150),
+            width: 500,
+            height: 140,
+            anchor: new Vector(0.5, 0.5)
+        })
+
+        titleBox.color = Color.fromHex("#2d3446")
+
+        const title = new Label({
+            text: "WEATHERED",
+            pos: new Vector(265, 135),
+            font: new Font({
+                size: 50,
+                unit: FontUnit.Px
+            }),
+            color: Color.White
+        })
+
+        const startButton = this.createButton(
+            "Start",
+            new Vector(400, 320),
+            () => {
+                this.engine.goToScene("thunderscene")
+            }
+        )
+
+        const optionsButton = this.createButton(
+            "Options",
+            new Vector(400, 410),
+            () => {
+                this.showOptions()
+            }
+        )
+
+        const quitButton = this.createButton(
+    "Quit",
+    new Vector(400, 500),
+    () => {
+
+        this.engine.stop()
+
+        if (this.engine.canvas) {
+            this.engine.canvas.remove()
+        }
+    }
+)
+
+        this.menuActors.push(
+            titleBox,
+            title,
+            startButton,
+            optionsButton,
+            quitButton
+        )
+
+        this.menuActors.forEach(actor => {
+            this.add(actor)
+        })
+>>>>>>> Stashed changes
     }
 
     const x1=d.x*w,y1=d.y*h,len=d.len*h;

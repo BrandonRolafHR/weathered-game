@@ -10,7 +10,7 @@ export class PlayerOne extends Player {
 
         this.graphics.use(this.playerone);
 
-        this.pos = new Vector(150, 600);
+        this.pos = new Vector(150, 400);
         this.scale = new Vector(0.09, 0.09);
         this.body.useGravity = true;
         this.body.collisionType = CollisionType.Active;

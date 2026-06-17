@@ -13,6 +13,8 @@ export class Player extends Actor {
             width: 900,
             height: 750,
         })
+
+        this.health = 3;
     }
 
     onInitialize(engine) {
@@ -32,6 +34,7 @@ export class Player extends Actor {
             this.body.applyLinearImpulse(new Vector(0, -350 * delta));
         }
 
+<<<<<<< Updated upstream
         if (engine.input.keyboard.isHeld(Keys.ArrowRight)) {
             this.vel = new Vector(200, this.vel.y)
         }
@@ -76,4 +79,16 @@ export class Player extends Actor {
         }
     }
 
+=======
+    takeDamage() {
+        this.health--;
+
+        console.log(`HP: ${this.health}`);
+
+        if (this.health <= 0) {
+            this.kill();
+            // this.scene.engine.goToScene("gameover");
+        }
+    }
+>>>>>>> Stashed changes
 } 
