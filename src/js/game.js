@@ -5,7 +5,7 @@ import { StartScene } from './startscene.js'
 import { FirstScene } from './firstscene.js'
 
 export class Game extends Engine {
-
+    
     constructor(){
         super({
             width: 1280,
