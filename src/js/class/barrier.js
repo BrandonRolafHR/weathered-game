@@ -10,7 +10,7 @@ export class Barrier extends Actor {
             height: 30,
         })
     
-        this.pos = new Vector(640, 710)
+        this.pos = new Vector(640, 620)
         this.body.collisionType = CollisionType.Fixed
     }
 }
