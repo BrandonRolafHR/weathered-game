@@ -4,6 +4,8 @@ import { Resources, ResourceLoader } from './resources.js'
 import { Player } from './class/player.js';
 import { PlayerOne } from './class/playerone.js';
 import { Barrier } from './class/barrier.js';
+import { Background } from './class/background.js';
+import { Ground } from './class/ground.js';
 
 export class FirstScene extends Scene {
 
@@ -17,5 +19,11 @@ export class FirstScene extends Scene {
 
         const loadBarrier = new Barrier();
         this.add(loadBarrier);
+
+        const loadBackground = new Background();
+        this.add(loadBackground);
+
+        const loadGround = new Ground();
+        this.add(loadGround);
     }
 }
