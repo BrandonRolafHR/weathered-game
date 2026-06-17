@@ -1,10 +1,14 @@
 import '../css/style.css';
 
-import { Engine, Vector, DisplayMode, SolverStrategy } from 'excalibur';
+import { Engine, Vector, DisplayMode, SolverStrategy, Keys } from 'excalibur';
 import { ResourceLoader } from './resources.js';
 import { FirstScene } from './firstscene.js';
 
 class Game extends Engine {
+
+  isPaused = false;
+  body = document.body
+
   constructor() {
     super({
       width: 1280,
@@ -29,6 +33,19 @@ class Game extends Engine {
   startFirstScene() {
     this.goToScene('firstscene');
   }
+
+  pause() {
+    this.isPaused = !this.isPaused
+    this.timescale = this.isPaused ? 0 : 1
+    this.isPaused ? this.body.classList.add("paused") : this.body.classList.remove("paused")
+  }
+
+  onPreUpdate() {
+    if (this.input.keyboard.wasPressed(Keys.Escape)) {
+      this.pause()
+    }
+  }
+
 }
 
 const game = new Game();
