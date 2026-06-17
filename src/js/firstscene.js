@@ -6,6 +6,7 @@ import { PlayerOne } from './class/playerone.js';
 import { Barrier } from './class/barrier.js';
 import { Background } from './class/background.js';
 import { Ground } from './class/ground.js';
+import { Branch } from './class/branch.js';
 
 export class FirstScene extends Scene {
 
@@ -14,8 +15,10 @@ export class FirstScene extends Scene {
     }
 
     startGame() {
-        const loadPlayerOne = new PlayerOne();
-        this.add(loadPlayerOne);
+        // const loadPlayerOne = new PlayerOne();
+        // this.add(loadPlayerOne);
+
+        this.add(new PlayerOne());
 
         const loadBarrier = new Barrier();
         this.add(loadBarrier);
@@ -25,5 +28,8 @@ export class FirstScene extends Scene {
 
         const loadGround = new Ground();
         this.add(loadGround);
+
+        const branch = new Branch(500, 400);
+        this.add(branch);
     }
 }

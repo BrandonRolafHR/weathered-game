@@ -505,6 +505,7 @@ let startTime=null;
 function animate(ts){
   if(!startTime) startTime=ts;
   draw((ts-startTime)/1000);
+  console.log("start scene is animating....")
   requestAnimationFrame(animate);
 }
 
