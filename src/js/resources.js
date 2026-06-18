@@ -8,8 +8,8 @@ const Resources = {
     Branch: new ImageSource('images/branch.png'),
     NewsPaper: new ImageSource('images/NewsPaper.png'),
 
-    ThunderPlatform: new ImageSource('images/thunder-background.png'),
-    ThunderBackground: new ImageSource('images/thunder-platform.png'),
+    ThunderBackground: new ImageSource('images/thunder-background.png'),
+    ThunderPlatform: new ImageSource('images/thunder-platform.png'),
     Lightning: new ImageSource('images/lightning.png'),
 }
 
