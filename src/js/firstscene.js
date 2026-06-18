@@ -35,5 +35,8 @@ export class FirstScene extends Scene {
 
         const newspaper = new Newspaper(700, 600);
         this.add(newspaper);
+
+        const newspaper2 = new Newspaper(900, 600);
+        this.add(newspaper2);
     }
 }

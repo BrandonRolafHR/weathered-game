@@ -1,8 +1,8 @@
-import { Actor, CollisionType, Vector } from 'excalibur';
+import { Actor, CollisionType, Vector} from 'excalibur';
 import { Resources } from '../resources.js'
 
 export class Newspaper extends Actor {
-  constructor(x, y) {
+    constructor(x, y) {
     super({
       x,
       y,
@@ -12,4 +12,12 @@ export class Newspaper extends Actor {
     this.scale = new Vector(0.16, 0.16);
     this.graphics.use(Resources.NewsPaper.toSprite());
   }
+
+  showPage(pageCount) {
+    console.log(`Page ${pageCount} of the newspaper is shown.`);
+    this.scene.engine.pause();
+    this.kill();
+  }
+
 }
+
