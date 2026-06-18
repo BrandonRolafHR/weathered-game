@@ -1,6 +1,8 @@
 import '../css/style.css'
 import { Actor, Engine, Scene, Vector, DisplayMode, randomInRange, CollisionType, DegreeOfFreedom, SolverStrategy, Label, FontUnit, Font, Color, Timer } from "excalibur"
-import { Resources, ResourceLoader } from './resources.js'
+import { Resources, ResourceLoader } from './resources.js';
+import { Game } from './game.js';
+import { ThunderScene } from './thunderscene.js';
 import { Player } from './class/player.js';
 import { PlayerOne } from './class/playerone.js';
 import { Barrier } from './class/barrier.js';
@@ -13,6 +15,13 @@ export class FirstScene extends Scene {
 
     onActivate() {
         this.startGame();
+
+        const delay = randomInRange(10000, 15000);
+
+        setTimeout(() => {
+            this.loadThunderScene();
+        }, delay);
+    }
     }
 
     startGame() {
@@ -38,5 +47,9 @@ export class FirstScene extends Scene {
 
         const newspaper2 = new Newspaper(900, 600);
         this.add(newspaper2);
+    }
+
+    loadThunderScene() {
+        this.goToScene('thunderscene');
     }
 }
