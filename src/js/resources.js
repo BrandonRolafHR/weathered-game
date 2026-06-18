@@ -6,6 +6,7 @@ const Resources = {
     Background: new ImageSource('images/standard-denver.png'),
     Ground: new ImageSource('images/standard-platform.png'),
     Branch: new ImageSource('images/branch.png'),
+    NewsPaper: new ImageSource('images/NewsPaper.png'),
 
     ThunderPlatform: new ImageSource('images/thunder-background.png'),
     ThunderBackground: new ImageSource('images/thunder-platform.png'),

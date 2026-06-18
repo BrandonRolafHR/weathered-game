@@ -48,6 +48,7 @@ export class Player extends Actor {
         if (other.owner instanceof Barrier) {
             this.onTheGround = true;
         }
+       
         //if bij de note oppakken
         if (this.videoOverlay) {
             this.videoOverlay.style.position = 'absolute';
