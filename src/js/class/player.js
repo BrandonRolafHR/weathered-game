@@ -34,7 +34,6 @@ export class Player extends Actor {
             this.body.applyLinearImpulse(new Vector(0, -350 * delta));
         }
 
-<<<<<<< Updated upstream
         if (engine.input.keyboard.isHeld(Keys.ArrowRight)) {
             this.vel = new Vector(200, this.vel.y)
         }
@@ -79,7 +78,6 @@ export class Player extends Actor {
         }
     }
 
-=======
     takeDamage() {
         this.health--;
 
@@ -90,5 +88,4 @@ export class Player extends Actor {
             // this.scene.engine.goToScene("gameover");
         }
     }
->>>>>>> Stashed changes
 } 

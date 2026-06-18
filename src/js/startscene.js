@@ -1,16 +1,10 @@
 const canvas = document.getElementById('bg');
 const ctx = canvas.getContext('2d');
 
-<<<<<<< Updated upstream
-function resize() {
-  const el = document.getElementById('scene');
-  const dpr = window.devicePixelRatio || 1;
-=======
 // Verwijderen
 import { ThunderScene } from "./thunderscene.js"
 
 export class StartScene extends Scene {
->>>>>>> Stashed changes
 
   canvas.width = Math.round(el.clientWidth * dpr);
   canvas.height = Math.round(el.clientHeight * dpr);
@@ -219,10 +213,6 @@ function drawRain(stormT,windT){
       d.x=Math.random();
     }
 
-<<<<<<< Updated upstream
-    if(d.x<-0.05){
-      d.x=1.05;
-=======
     createMainMenu() {
 
         // TITLE PLACEHOLDER
@@ -285,7 +275,6 @@ function drawRain(stormT,windT){
         this.menuActors.forEach(actor => {
             this.add(actor)
         })
->>>>>>> Stashed changes
     }
 
     const x1=d.x*w,y1=d.y*h,len=d.len*h;

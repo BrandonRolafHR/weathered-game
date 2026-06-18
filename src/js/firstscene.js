@@ -6,12 +6,9 @@ import { PlayerOne } from './class/playerone.js';
 import { Barrier } from './class/barrier.js';
 import { Background } from './class/background.js';
 import { Ground } from './class/ground.js';
-<<<<<<< Updated upstream
 import { Branch } from './class/branch.js';
-=======
 import { ThunderScene } from './thunderscene.js';
 import { Lightning } from './class/lightning.js';
->>>>>>> Stashed changes
 
 export class FirstScene extends Scene {
 
@@ -34,11 +31,8 @@ export class FirstScene extends Scene {
         const loadGround = new Ground();
         this.add(loadGround);
 
-<<<<<<< Updated upstream
         const branch = new Branch(500, 400);
         this.add(branch);
-=======
         this.goToScene('start')
->>>>>>> Stashed changes
     }
 }
