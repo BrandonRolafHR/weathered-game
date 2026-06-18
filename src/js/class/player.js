@@ -48,7 +48,7 @@ export class Player extends Actor {
         if (other.owner instanceof Barrier) {
             this.onTheGround = true;
         }
-       
+
         //if bij de note oppakken
         if (this.videoOverlay) {
             this.videoOverlay.style.position = 'absolute';
@@ -65,19 +65,20 @@ export class Player extends Actor {
         // this.videoPlayer.load()
         // this.videoPlayer.play()
     }
-    // takeDamage(amount) {
-    //     this.health -= amount;
-    //     console.log('Player health:', this.health);
+    takeDamage() {
+        this.health--;
 
-    //     if (this.health <= 0) {
-    //         console.log('Player dood');
-    //         this.goToSCene
-    //     }
-    // }
+        console.log(`HP: ${this.health}`);
+
+        if (this.health <= 0) {
+            this.kill();
+            // this.scene.engine.goToScene("gameover");
+        }
+    }
+
     onCollisionEnd(event, other) {
         if (other.owner instanceof Barrier) {
             this.onTheGround = false;
         }
     }
-
-} 
+}
