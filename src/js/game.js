@@ -2,12 +2,13 @@ import '../css/style.css';
 
 import { Engine, Vector, DisplayMode, SolverStrategy, Keys } from 'excalibur';
 import { ResourceLoader } from './resources.js';
+import { StartScene } from './startscene.js';
 import { FirstScene } from './firstscene.js';
+import { ThunderScene } from './thunderscene.js';
 
 class Game extends Engine {
-
   isPaused = false;
-  body = document.body
+  body = document.body;
 
   constructor() {
     super({
@@ -22,12 +23,14 @@ class Game extends Engine {
       suppressPlayButton: true
     });
 
+    this.add('start', new StartScene());
     this.add('firstscene', new FirstScene());
+    this.add('thunderscene', new ThunderScene());
   }
 
   async init() {
     await this.start(ResourceLoader);
-    console.log('Game geladen, wacht op HTML Start knop');
+    this.goToScene('start');
   }
 
   startFirstScene() {
@@ -42,10 +45,9 @@ class Game extends Engine {
 
   onPreUpdate() {
     if (this.input.keyboard.wasPressed(Keys.Escape)) {
-      this.pause()
+      this.pause();
     }
   }
-
 }
 
 const game = new Game();
@@ -53,13 +55,6 @@ game.init();
 
 document.addEventListener('start-game', () => {
   console.log('Start knop ontvangen');
-
-  const startScreen = document.getElementById('scene');
-  const optionsPanel = document.getElementById('options-panel');
-
-  if (startScreen) startScreen.style.display = 'none';
-  if (optionsPanel) optionsPanel.classList.add('hidden');
-
   game.startFirstScene();
 });
 
