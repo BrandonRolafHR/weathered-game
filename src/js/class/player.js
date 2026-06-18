@@ -13,6 +13,7 @@ export class Player extends Actor {
             width: 900,
             height: 750,
         })
+        this.health = 3;
     }
 
     onInitialize(engine) {
@@ -56,20 +57,22 @@ export class Player extends Actor {
             this.videoOverlay.style.height = '720px';
             this.videoOverlay.style.zIndex = '9999';
             this.videoOverlay.style.display = 'block';
+            //this.videooverlay.classlist.add is beter en het moet allemaal in de css class.
         }
         //video afspelen
         // this.videoPlayer.src = './images/shutdown.mp4'
         // this.videoPlayer.load()
         // this.videoPlayer.play()
     }
-    takeDamage(amount) {
-        this.health -= amount;
-        console.log('Player health:', this.health);
+    // takeDamage(amount) {
+    //     this.health -= amount;
+    //     console.log('Player health:', this.health);
 
-        if (this.health <= 0) {
-            console.log('Player dood');
-        }
-    }
+    //     if (this.health <= 0) {
+    //         console.log('Player dood');
+    //         this.goToSCene
+    //     }
+    // }
     onCollisionEnd(event, other) {
         if (other.owner instanceof Barrier) {
             this.onTheGround = false;
