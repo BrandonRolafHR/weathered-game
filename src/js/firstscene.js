@@ -7,6 +7,7 @@ import { Barrier } from './class/barrier.js';
 import { Background } from './class/background.js';
 import { Ground } from './class/ground.js';
 import { Branch } from './class/branch.js';
+import { Newspaper } from './class/Newspaper.js';
 
 export class FirstScene extends Scene {
 
@@ -31,5 +32,8 @@ export class FirstScene extends Scene {
 
         const branch = new Branch(500, 400);
         this.add(branch);
+
+        const newspaper = new Newspaper(700, 600);
+        this.add(newspaper);
     }
 }

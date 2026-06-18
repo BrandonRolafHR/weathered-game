@@ -5,7 +5,8 @@ const Resources = {
     PlayerOne: new ImageSource('images/bassie.png'),
     Background: new ImageSource('images/standard-denver.png'),
     Ground: new ImageSource('images/standard-platform.png'),
-    Branch: new ImageSource('images/branch.png')
+    Branch: new ImageSource('images/branch.png'),
+    NewsPaper: new ImageSource('images/NewsPaper.png'),
 }
 
 const ResourceLoader = new Loader()
