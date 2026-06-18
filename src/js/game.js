@@ -38,14 +38,9 @@ class Game extends Engine {
   }
 
   pause() {
-    this.isPaused = !this.isPaused;
-    this.timescale = this.isPaused ? 0 : 1;
-
-    if (this.isPaused) {
-      this.body.classList.add('paused');
-    } else {
-      this.body.classList.remove('paused');
-    }
+    this.isPaused = !this.isPaused
+    this.timescale = this.isPaused ? 0 : 1
+    this.isPaused ? this.body.classList.add("paused") : this.body.classList.remove("paused")
   }
 
   onPreUpdate() {
