@@ -1,7 +1,5 @@
 import { ImageSource, Sound, Resource, Loader, ImageWrapping } from 'excalibur'
 import { Branch } from './class/branch'
-import { ThunderBackground } from './class/thunderbackground'
-import { ThunderPlatform } from './class/thunderplatform'
 
 const Resources = {
     PlayerOne: new ImageSource('images/bassie.png'),
