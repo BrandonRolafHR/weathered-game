@@ -5,6 +5,7 @@ import { ResourceLoader } from './resources.js';
 import { StartScene } from './startscene.js';
 import { FirstScene } from './firstscene.js';
 import { ThunderScene } from './thunderscene.js';
+import { HurricaneScene } from './hurricanescene.js';
 
 class Game extends Engine {
   isPaused = false;
@@ -26,6 +27,7 @@ class Game extends Engine {
     this.add('start', new StartScene());
     this.add('firstscene', new FirstScene());
     this.add('thunderscene', new ThunderScene());
+    this.add('hurricanescene', new HurricaneScene());
   }
 
   async init() {
@@ -34,7 +36,8 @@ class Game extends Engine {
   }
 
   startFirstScene() {
-    this.goToScene('firstscene');
+    // this.goToScene('firstscene');
+    this.goToScene('hurricanescene');
   }
 
   pause() {
