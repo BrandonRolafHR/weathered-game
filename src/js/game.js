@@ -11,7 +11,7 @@ import { LevelSwitcher } from './levelswitcher.js';
 import { fadeToScene } from './class/fade.js';
 import { Player } from './class/player.js';
 
-class Game extends Engine {
+export class Game extends Engine {
   isPaused = false;
   body = document.body;
 

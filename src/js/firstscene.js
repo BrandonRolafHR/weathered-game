@@ -1,5 +1,5 @@
 import '../css/style.css'
-import { Actor, Engine, Scene, Vector, DisplayMode, randomInRange, CollisionType, DegreeOfFreedom, SolverStrategy, Label, FontUnit, Font, Color, Timer } from "excalibur"
+import { Actor, Engine, Scene, Vector, DisplayMode, randomInRange, CollisionType, DegreeOfFreedom, SolverStrategy, Label, FontUnit, Font, Color, Timer, BoundingBox } from "excalibur"
 import { Resources, ResourceLoader } from './resources.js';
 import { Game } from './game.js';
 import { ThunderScene } from './thunderscene.js';
@@ -23,7 +23,7 @@ export class FirstScene extends Scene {
             this.loadThunderScene();
         }, delay);
     }
-    }
+    
 
     startGame() {
         //add player
@@ -54,6 +54,6 @@ export class FirstScene extends Scene {
     }
 
     loadThunderScene() {
-        this.goToScene('thunderscene');
-    }
+    this.engine.goToScene('thunderscene');
+}
 }

@@ -4,7 +4,8 @@ import {
     Vector,
     CollisionType,
     Color,
-    Rectangle
+    Rectangle,
+    BoundingBox
 } from 'excalibur';
 
 import { Resources } from './resources.js';

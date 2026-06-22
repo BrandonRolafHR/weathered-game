@@ -1,5 +1,5 @@
 import '../css/style.css'
-import { Actor, Scene, Sprite, Vector, Keys, CollisionType, DegreeOfFreedom, SolverStrategy, Timer } from "excalibur"
+import { Actor, Scene, BoundingBox, Sprite, Vector, Keys, CollisionType, DegreeOfFreedom, SolverStrategy, Timer } from "excalibur"
 import { Resources } from './resources.js'
 import { ThunderBackground } from "./class/thunderbackground.js";
 import { ThunderPlatform } from "./class/thunderplatform.js";
