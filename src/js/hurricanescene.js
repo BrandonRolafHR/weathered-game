@@ -182,7 +182,14 @@ export class HurricaneScene extends Scene {
         this.add(new HurricaneBackground());
         this.add(new HurricanePlatform());
         this.add(new Barrier());
-        this.add(new PlayerOne());
+
+        //add player
+        const player = new PlayerOne()
+        this.add(player)
+        
+        //lock camera to player
+        this.camera.strategy.lockToActor(player)
+        this.camera.strategy.limitCameraBounds(new BoundingBox(0, 0, 3840, 720))
 
         this.spawnWindParticles();
         this.spawnDebris();
