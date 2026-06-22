@@ -5,6 +5,7 @@ import { ResourceLoader } from './resources.js';
 import { StartScene } from './startscene.js';
 import { FirstScene } from './firstscene.js';
 import { ThunderScene } from './thunderscene.js';
+import { waterScene } from './waterscene.js';
 import { HurricaneScene } from './hurricanescene.js';
 import { LevelSwitcher } from './levelswitcher.js';
 import { fadeToScene } from './class/fade.js';
@@ -57,6 +58,11 @@ class Game extends Engine {
   onPreUpdate() {
     if (this.input.keyboard.wasPressed(Keys.Escape)) {
       this.pause();
+    }
+
+    if (this.input.keyboard.wasPressed(Keys.F)) {
+      this.add('waterscene', new waterScene)
+      this.goToScene('waterscene')
     }
   }
 }
