@@ -7,6 +7,7 @@ const Resources = {
     Ground: new ImageSource('images/standard-platform.png'),
     Branch: new ImageSource('images/branch.png'),
     NewsPaper: new ImageSource('images/NewsPaper.png'),
+    page1: new ImageSource('images/Page1.png'),
 }
 
 const ResourceLoader = new Loader()
