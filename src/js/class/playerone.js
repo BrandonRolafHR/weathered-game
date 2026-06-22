@@ -18,7 +18,6 @@ export class PlayerOne extends Player {
         this.body.useGravity = true;
         this.body.collisionType = CollisionType.Active;
         this.body.limitDegreeOfFreedom.push(DegreeOfFreedom.Rotation);
-        this.pageCount = 0;
     }
 
     onPreUpdate(engine, delta) {
@@ -41,11 +40,6 @@ export class PlayerOne extends Player {
     onCollisionStart(event, other) {
         if (other.owner instanceof Barrier) {
             this.onTheGround = true;
-        }
-        if (other.owner instanceof Newspaper) {
-            console.log('Player collided with the newspaper');
-            this.pageCount++;
-            other.owner.showPage(this.pageCount);
         }
     }
 
