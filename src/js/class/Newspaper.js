@@ -18,6 +18,7 @@ export class Newspaper extends Actor {
     console.log(`Page ${pageCount} of the newspaper is shown.`);
     this.scene.engine.showingPage = true;
     this.scene.engine.pause();
+    this.scene.engine.body.classList.remove('paused');
 
     this.scene.add(new Page(pageCount));
     this.kill();
