@@ -12,6 +12,7 @@ import { Newspaper } from './class/Newspaper.js';
 export class FirstScene extends Scene {
 
     onActivate() {
+        this.clear();
         this.startGame();
     }
 
