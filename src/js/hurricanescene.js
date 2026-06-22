@@ -110,8 +110,9 @@ class FlyingDebris extends Actor {
 
 export class HurricaneScene extends Scene {
     onActivate() {
-        this.startGame();
-    }
+  this.clear();
+  this.startGame();
+}
 
     startGame() {
         this.clear();
