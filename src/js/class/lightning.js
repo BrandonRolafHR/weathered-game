@@ -8,6 +8,7 @@ export class Lightning extends Actor {
             y,
             width: 120,
             height: 1100,
+            collisionType: CollisionType.Active,
         });
     }
 

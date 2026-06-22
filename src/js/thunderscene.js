@@ -6,6 +6,7 @@ import { ThunderPlatform } from "./class/thunderplatform.js";
 import { Player } from './class/player.js';
 import { PlayerOne } from './class/playerone.js';
 import { Barrier } from './class/barrier.js';
+import { IncomingLightning } from './class/incominglightning.js';
 import { Lightning } from './class/lightning.js';
 
 export class ThunderScene extends Scene {
@@ -57,11 +58,28 @@ export class ThunderScene extends Scene {
 
         const randomX = Math.random() * this.engine.drawWidth;
 
-        const lightning = new Lightning(
+        const incomingLightning = new IncomingLightning(
             randomX,
-            600
+            500
         );
 
-        this.add(lightning);
+        this.add(incomingLightning);
+
+        const timer = new Timer({
+            interval: 1000,
+            repeats: false,
+            action: () => {
+
+                const lightning = new Lightning(
+                    randomX,
+                    300
+                );
+
+                this.add(lightning);
+            }
+        });
+
+        this.add(timer);
+        timer.start();
     }
 }
