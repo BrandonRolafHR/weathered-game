@@ -12,6 +12,10 @@ const Resources = {
     ThunderPlatform: new ImageSource('images/thunder-platform.png'),
     Lightning: new ImageSource('images/lightning.png'),
     IncomingLightning: new ImageSource('images/incoming-lightning.png'),
+    Water: new ImageSource('images/water.png'),
+
+    //Huricane scene images:
+    HurricaneBackground: new ImageSource('images/hurricane-background.png'),
 }
 
 const ResourceLoader = new Loader()

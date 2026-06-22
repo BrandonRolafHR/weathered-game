@@ -1,5 +1,6 @@
 import { Actor, Sprite, Vector, Keys, CollisionType, DegreeOfFreedom, SolverStrategy } from "excalibur"
 import { Resources } from '../resources.js'
+import { PlayerState } from './playerstate.js';
 
 export class Player extends Actor {
 
@@ -13,7 +14,7 @@ export class Player extends Actor {
             width: 900,
             height: 750,
         })
-        this.health = 3;
+        this.health = PlayerState.health ?? 3;
     }
 
     onInitialize(engine) {
@@ -26,9 +27,12 @@ export class Player extends Actor {
         this.body.useGravity = true;
         this.body.collisionType = CollisionType.Active;
         this.body.limitDegreeOfFreedom.push(DegreeOfFreedom.Rotation);
+        this.pos = new Vector(PlayerState.x, PlayerState.y);
+        this.health = PlayerState.health;
     }
 
     onPreUpdate(engine, delta) {
+
         if (engine.input.keyboard.wasPressed(Keys.ArrowUp) && this.onTheGround) {
             this.body.applyLinearImpulse(new Vector(0, -350 * delta));
         }
@@ -66,7 +70,11 @@ export class Player extends Actor {
         // this.videoPlayer.play()
     }
     takeDamage() {
+        if(PlayerState.isSwitchingScene) return;
+
         this.health--;
+
+        PlayerState.health = this.health;
 
         console.log(`HP: ${this.health}`);
 

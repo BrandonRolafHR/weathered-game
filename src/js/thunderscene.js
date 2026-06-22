@@ -11,6 +11,7 @@ import { Lightning } from './class/lightning.js';
 
 export class ThunderScene extends Scene {
     onActivate() {
+        this.clear();
         this.startGame();
     }
 
@@ -24,8 +25,13 @@ export class ThunderScene extends Scene {
         const loadBarrier = new Barrier();
         this.add(loadBarrier);
 
-        const loadPlayerOne = new PlayerOne();
-        this.add(loadPlayerOne);
+        //add player
+        const player = new PlayerOne()
+        this.add(player)
+        
+        //lock camera to player
+        this.camera.strategy.lockToActor(player)
+        this.camera.strategy.limitCameraBounds(new BoundingBox(0, 0, 3840, 720))
 
         this.thunderWeather()
     }
