@@ -7,6 +7,9 @@ const Resources = {
     Ground: new ImageSource('images/standard-platform.png'),
     Branch: new ImageSource('images/branch.png'),
     NewsPaper: new ImageSource('images/NewsPaper.png'),
+    Branch: new ImageSource('images/branch.png'),
+    Box: new ImageSource('images/box.png'),
+    MetalSheet: new ImageSource('images/metalsheet.png'),
 
     ThunderBackground: new ImageSource('images/thunder-background.png'),
     ThunderPlatform: new ImageSource('images/thunder-platform.png'),
@@ -17,8 +20,8 @@ const Resources = {
 }
 
 const ResourceLoader = new Loader()
-    for (let res of Object.values(Resources)) {
-        ResourceLoader.addResource(res)
+for (let res of Object.values(Resources)) {
+    ResourceLoader.addResource(res)
 }
 
 export { Resources, ResourceLoader }
