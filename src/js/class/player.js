@@ -1,6 +1,7 @@
 import { Actor, Sprite, Vector, Keys, CollisionType, DegreeOfFreedom, SolverStrategy } from "excalibur"
 import { Resources } from '../resources.js'
 import { PlayerState } from './playerstate.js';
+import { Water } from "./water.js";
 
 export class Player extends Actor {
 
@@ -75,6 +76,9 @@ export class Player extends Actor {
                 this.videoPlayer.load()
                 this.videoPlayer.play()
             }
+        }
+        if (other.owner instanceof Water) {
+            this.takeDamage()
         }
         
     }
