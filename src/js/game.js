@@ -1,11 +1,12 @@
 import '../css/style.css';
 
-import { Engine, Vector, DisplayMode, SolverStrategy, Keys } from 'excalibur';
+import { Engine, Vector, DisplayMode, SolverStrategy, Keys, BoundingBox } from 'excalibur';
 import { ResourceLoader } from './resources.js';
 import { StartScene } from './startscene.js';
 import { FirstScene } from './firstscene.js';
 import { ThunderScene } from './thunderscene.js';
 import { waterScene } from './waterscene.js';
+import { Player } from './class/player.js';
 
 class Game extends Engine {
   isPaused = false;
@@ -27,6 +28,7 @@ class Game extends Engine {
     this.add('start', new StartScene());
     this.add('firstscene', new FirstScene());
     this.add('thunderscene', new ThunderScene());
+    
   }
 
   async init() {
