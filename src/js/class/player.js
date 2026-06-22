@@ -1,5 +1,6 @@
 import { Actor, Sprite, Vector, Keys, CollisionType, DegreeOfFreedom, SolverStrategy } from "excalibur"
 import { Resources } from '../resources.js'
+import { PlayerState } from './playerstate.js';
 
 export class Player extends Actor {
 
@@ -13,7 +14,7 @@ export class Player extends Actor {
             width: 900,
             height: 750,
         })
-        this.health = 3;
+        this.health = PlayerState.health ?? 3;
     }
 
     onInitialize(engine) {
@@ -26,9 +27,12 @@ export class Player extends Actor {
         this.body.useGravity = true;
         this.body.collisionType = CollisionType.Active;
         this.body.limitDegreeOfFreedom.push(DegreeOfFreedom.Rotation);
+        this.pos = new Vector(PlayerState.x, PlayerState.y);
+        this.health = PlayerState.health;
     }
 
     onPreUpdate(engine, delta) {
+
         if (engine.input.keyboard.wasPressed(Keys.ArrowUp) && this.onTheGround) {
             this.body.applyLinearImpulse(new Vector(0, -350 * delta));
         }
@@ -48,7 +52,7 @@ export class Player extends Actor {
         if (other.owner instanceof Barrier) {
             this.onTheGround = true;
         }
-       
+
         //if bij de note oppakken
         if (this.videoOverlay) {
             this.videoOverlay.style.position = 'absolute';
@@ -65,19 +69,24 @@ export class Player extends Actor {
         // this.videoPlayer.load()
         // this.videoPlayer.play()
     }
-    // takeDamage(amount) {
-    //     this.health -= amount;
-    //     console.log('Player health:', this.health);
+    takeDamage() {
+        if(PlayerState.isSwitchingScene) return;
 
-    //     if (this.health <= 0) {
-    //         console.log('Player dood');
-    //         this.goToSCene
-    //     }
-    // }
+        this.health--;
+
+        PlayerState.health = this.health;
+
+        console.log(`HP: ${this.health}`);
+
+        if (this.health <= 0) {
+            this.kill();
+            // this.scene.engine.goToScene("gameover");
+        }
+    }
+
     onCollisionEnd(event, other) {
         if (other.owner instanceof Barrier) {
             this.onTheGround = false;
         }
     }
-
-} 
+}

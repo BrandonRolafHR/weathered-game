@@ -5,6 +5,9 @@ import { ResourceLoader } from './resources.js';
 import { StartScene } from './startscene.js';
 import { FirstScene } from './firstscene.js';
 import { ThunderScene } from './thunderscene.js';
+import { HurricaneScene } from './hurricanescene.js';
+import { LevelSwitcher } from './levelswitcher.js';
+import { fadeToScene } from './class/fade.js';
 
 class Game extends Engine {
   isPaused = false;
@@ -27,6 +30,13 @@ class Game extends Engine {
     this.add('start', new StartScene());
     this.add('firstscene', new FirstScene());
     this.add('thunderscene', new ThunderScene());
+    this.add('hurricanescene', new HurricaneScene());
+
+    this.levelSwitcher = new LevelSwitcher(this, [
+      'firstscene',
+      'hurricanescene',
+      'thunderscene'
+    ]);
   }
 
   async init() {
@@ -35,7 +45,8 @@ class Game extends Engine {
   }
 
   startFirstScene() {
-    this.goToScene('firstscene');
+    // this.goToScene('firstscene');
+    this.goToScene('hurricanescene');
   }
 
   pause() {
@@ -60,9 +71,10 @@ class Game extends Engine {
 const game = new Game();
 game.init();
 
-document.addEventListener('start-game', () => {
-  console.log('Start knop ontvangen');
-  game.startFirstScene();
+document.addEventListener('start-game', async () => {
+  await fadeToScene(game, 'firstscene');
+
+  game.levelSwitcher.start('firstscene');
 });
 
 document.addEventListener('toggle-sound', (event) => {
