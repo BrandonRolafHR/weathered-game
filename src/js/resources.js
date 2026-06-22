@@ -11,6 +11,7 @@ const Resources = {
     ThunderBackground: new ImageSource('images/thunder-background.png'),
     ThunderPlatform: new ImageSource('images/thunder-platform.png'),
     Lightning: new ImageSource('images/lightning.png'),
+    IncomingLightning: new ImageSource('images/incoming-lightning.png'),
 }
 
 const ResourceLoader = new Loader()
