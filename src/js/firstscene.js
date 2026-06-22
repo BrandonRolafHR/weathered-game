@@ -17,10 +17,13 @@ export class FirstScene extends Scene {
     }
 
     startGame() {
-        // const loadPlayerOne = new PlayerOne();
-        // this.add(loadPlayerOne);
-
-        this.add(new PlayerOne());
+        //add player
+        const player = new PlayerOne()
+        this.add(player)
+        
+        //lock camera to player
+        this.camera.strategy.lockToActor(player)
+        this.camera.strategy.limitCameraBounds(new BoundingBox(0, 0, 3840, 720))
 
         const loadBarrier = new Barrier();
         this.add(loadBarrier);
