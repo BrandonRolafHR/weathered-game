@@ -34,7 +34,8 @@ export class PlayerOne extends Player {
             this.vel = new Vector(-200, this.vel.y)
         }
         else {
-            this.vel = new Vector(0, this.vel.y)
+            // this.vel = new Vector(0, this.vel.y)
+            this.vel = new Vector(this.vel.x * 0.9, this.vel.y)
         }
     }
 
