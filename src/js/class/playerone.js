@@ -36,10 +36,6 @@ export class PlayerOne extends Player {
         else {
             this.vel = new Vector(0, this.vel.y)
         }
-
-                PlayerState.x = this.pos.x;
-        PlayerState.y = this.pos.y;
-        PlayerState.health = this.health;
     }
 
     onCollisionStart(event, other) {

@@ -45,7 +45,7 @@ class Game extends Engine {
 
   startFirstScene() {
     // this.goToScene('firstscene');
-    this.goToScene('hurricanescene');
+    // this.goToScene('hurricanescene');
   }
 
   pause() {

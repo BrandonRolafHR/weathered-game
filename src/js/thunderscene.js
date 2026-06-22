@@ -10,7 +10,7 @@ import { Lightning } from './class/lightning.js';
 
 export class ThunderScene extends Scene {
     onActivate() {
-        // this.clear();
+        this.clear();
         this.startGame();
     }
 
