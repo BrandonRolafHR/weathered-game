@@ -19,6 +19,8 @@ const Resources = {
     IncomingLightning: new ImageSource('images/incoming-lightning.png'),
     Water: new ImageSource('images/water.png'),
 
+    HurricaneBackground: new ImageSource('images/hurricane-background.png'),
+
     page1: new ImageSource('images/Page1.png'),
 }
 
