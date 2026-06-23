@@ -1,7 +1,11 @@
-import { Actor, Sprite, Vector, Keys, CollisionType, DegreeOfFreedom, SolverStrategy } from "excalibur"
+import { Actor, Sprite, Vector, Keys, CollisionType, DegreeOfFreedom, SolverStrategy, EngineEvents, Engine } from "excalibur"
 import { Resources } from '../resources.js';
 import { PlayerState } from './playerstate.js';
 import { Water } from "./water.js";
+import { DeathScene } from "../deathscene.js";
+import { Barrier } from "./barrier.js";
+import { Newspaper } from "./Newspaper.js";
+import { LevelSwitcher } from "../levelswitcher.js";
 
 export class Player extends Actor {
 
@@ -50,7 +54,7 @@ export class Player extends Actor {
         }
     }
 
-    onCollisionStart(event, other) {
+    onCollisionStart(event, other, engine) {
         if (other.owner instanceof Barrier) {
             this.onTheGround = true;
         }
@@ -78,12 +82,12 @@ export class Player extends Actor {
             }
         }
         if (other.owner instanceof Water) {
-            this.takeDamage()
+            this.takeDamage(engine)
         }
         
     }
 
-    takeDamage() {
+    takeDamage(engine) {
         if(PlayerState.isSwitchingScene) return;
 
         this.health--;
@@ -105,6 +109,12 @@ export class Player extends Actor {
             this.graphics.use(Resources.Dead.toSprite());
             setTimeout(() => {
             this.kill()
+
+            //naar de deathscreen
+            this.scene.engine.levelSwitcher.stop()
+            this.scene.clear()
+            this.scene.engine.add('deathscene', new DeathScene)
+            this.scene.engine.goToScene('deathscene')
         }, 3000);
         }
     }
