@@ -1,5 +1,5 @@
 import '../css/style.css'
-import { Actor, Scene, BoundingBox, Sprite, Vector, Keys, CollisionType, DegreeOfFreedom, SolverStrategy, Timer } from "excalibur"
+import { Actor, Scene, BoundingBox, Sprite, Vector, Keys, CollisionType, DegreeOfFreedom, SolverStrategy, Timer, Axis } from "excalibur"
 import { Resources } from './resources.js'
 import { ThunderBackground } from "./class/thunderbackground.js";
 import { ThunderPlatform } from "./class/thunderplatform.js";
@@ -8,11 +8,15 @@ import { PlayerOne } from './class/playerone.js';
 import { Barrier } from './class/barrier.js';
 import { IncomingLightning } from './class/incominglightning.js';
 import { Lightning } from './class/lightning.js';
+import { HealthBar } from './class/HealthBar.js';
 
 export class ThunderScene extends Scene {
     onActivate() {
         this.clear();
         this.startGame();
+
+        this.HealthBar = new HealthBar
+        this.add(this.HealthBar)
     }
 
     startGame() {

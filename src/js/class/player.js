@@ -81,9 +81,6 @@ export class Player extends Actor {
                 this.videoPlayer.play()
             }
         }
-        if (other.owner instanceof Water) {
-            this.takeDamage(engine)
-        }
         
     }
 
