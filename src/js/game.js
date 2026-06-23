@@ -1,6 +1,6 @@
 import '../css/style.css';
 
-import { Engine, Vector, DisplayMode, SolverStrategy, Keys } from 'excalibur';
+import { Engine, Vector, DisplayMode, SolverStrategy, Keys} from 'excalibur';
 import { ResourceLoader } from './resources.js';
 import { StartScene } from './startscene.js';
 import { FirstScene } from './firstscene.js';
@@ -13,6 +13,7 @@ class Game extends Engine {
   isPaused = false;
   body = document.body;
   showingPage = false;
+  ui;
 
   constructor() {
     super({
@@ -45,8 +46,7 @@ class Game extends Engine {
   }
 
   startFirstScene() {
-    // this.goToScene('firstscene');
-    this.goToScene('hurricanescene');
+    this.goToScene('firstscene');
   }
 
   pause() {
