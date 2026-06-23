@@ -1,5 +1,5 @@
 import { Actor, Sprite, Vector, Keys, CollisionType, DegreeOfFreedom, SolverStrategy } from "excalibur"
-import { Resources } from '../resources.js'
+import { Resources } from '../resources.js';
 import { PlayerState } from './playerstate.js';
 import { Water } from "./water.js";
 
