@@ -18,10 +18,6 @@ export class FirstScene extends Scene {
         this.startGame();
 
         const delay = randomInRange(10000, 15000);
-
-        setTimeout(() => {
-            this.loadThunderScene();
-        }, delay);
     }
     
 
@@ -52,8 +48,4 @@ export class FirstScene extends Scene {
         const newspaper2 = new Newspaper(900, 600);
         this.add(newspaper2);
     }
-
-    loadThunderScene() {
-    this.engine.goToScene('thunderscene');
-}
 }
