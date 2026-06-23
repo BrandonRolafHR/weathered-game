@@ -14,6 +14,8 @@ import { Player } from './class/player.js';
 export class Game extends Engine {
   isPaused = false;
   body = document.body;
+  showingPage = false;
+  ui;
 
   constructor() {
     super({
@@ -47,6 +49,7 @@ export class Game extends Engine {
   }
 
   startFirstScene() {
+    this.goToScene('firstscene');
     // this.goToScene('firstscene');
     // this.goToScene('hurricanescene');
   }
@@ -54,12 +57,18 @@ export class Game extends Engine {
   pause() {
     this.isPaused = !this.isPaused
     this.timescale = this.isPaused ? 0 : 1
-    this.isPaused ? this.body.classList.add("paused") : this.body.classList.remove("paused")
+    this.isPaused ? this.body.classList.add('paused') : this.body.classList.remove('paused')
   }
+
 
   onPreUpdate() {
     if (this.input.keyboard.wasPressed(Keys.Escape)) {
-      this.pause();
+      this.pause()
+    }
+
+    if(this.showingPage && this.input.keyboard.wasPressed(Keys.Space)) {
+      this.pause()
+      this.showingPage = false;
     }
 
     if (this.input.keyboard.wasPressed(Keys.F)) {

@@ -10,11 +10,16 @@ import { Background } from './class/background.js';
 import { Ground } from './class/ground.js';
 import { Branch } from './class/branch.js';
 import { Newspaper } from './class/Newspaper.js';
+import { HealthBar } from './class/HealthBar.js';
 
 export class FirstScene extends Scene {
 
     onActivate() {
         this.clear();
+
+        this.HealthBar = new HealthBar();
+        this.add(this.HealthBar);
+        
         this.startGame();
 
         const delay = randomInRange(10000, 15000);

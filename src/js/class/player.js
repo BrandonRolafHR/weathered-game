@@ -82,6 +82,7 @@ export class Player extends Actor {
         }
         
     }
+
     takeDamage() {
         if(PlayerState.isSwitchingScene) return;
 
@@ -89,11 +90,22 @@ export class Player extends Actor {
 
         PlayerState.health = this.health;
 
-        console.log(`HP: ${this.health}`);
+        const healthBar = this.scene.HealthBar;
+        healthBar.setHealth(this.health);
+
+        this.graphics.use(Resources.Damaged.toSprite());
+
+        if(this.health > 0){
+            setTimeout(() => {
+                this.graphics.use(Resources.PlayerOne.toSprite());
+            }, 300);
+        }
 
         if (this.health <= 0) {
-            this.kill();
-            // this.scene.engine.goToScene("gameover");
+            this.graphics.use(Resources.Dead.toSprite());
+            setTimeout(() => {
+            this.kill()
+        }, 3000);
         }
     }
 

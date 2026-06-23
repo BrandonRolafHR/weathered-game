@@ -31,6 +31,8 @@ video {
     object-fit: contain;
 }
 
+
 .paused {
-    filter: blur(3px)
+    filter: blur(3px);
 }
+
