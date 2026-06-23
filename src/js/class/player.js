@@ -1,11 +1,13 @@
 import { Actor, Sprite, Vector, Keys, CollisionType, DegreeOfFreedom, SolverStrategy } from "excalibur"
-import { Resources } from '../resources.js'
+import { Resources } from '../resources.js';
 import { PlayerState } from './playerstate.js';
+import { Water } from "./water.js";
 
 export class Player extends Actor {
 
     videoOverlay = document.getElementById('video-overlay')
     videoPlayer = document.getElementById('video')
+    pageCount = 0;
 
     constructor(x, y) {
         super({
@@ -52,22 +54,33 @@ export class Player extends Actor {
         if (other.owner instanceof Barrier) {
             this.onTheGround = true;
         }
+        if (other.owner instanceof Newspaper) {
+            console.log('Player collided with the newspaper');
+            this.pageCount++;
+            other.owner.showPage(this.pageCount);
 
-        //if bij de note oppakken
-        if (this.videoOverlay) {
-            this.videoOverlay.style.position = 'absolute';
-            this.videoOverlay.style.top = '0';
-            this.videoOverlay.style.left = '0';
-            this.videoOverlay.style.width = '1280px';
-            this.videoOverlay.style.height = '720px';
-            this.videoOverlay.style.zIndex = '9999';
-            this.videoOverlay.style.display = 'block';
-            //this.videooverlay.classlist.add is beter en het moet allemaal in de css class.
+            if (this.videoOverlay) {
+                this.videoOverlay.style.position = 'absolute';
+                this.videoOverlay.style.top = '0';
+                this.videoOverlay.style.left = '0';
+                this.videoOverlay.style.width = '1280px';
+                this.videoOverlay.style.height = '720px';
+                this.videoOverlay.style.zIndex = '9999';
+                this.videoOverlay.style.display = 'block';
+                //this.videooverlay.classlist.add is beter en het moet allemaal in de css class.
+            }
+
+            //video afspelen
+            if (this.pageCount === 6) {
+                this.videoPlayer.src = './images/shutdown.mp4'
+                this.videoPlayer.load()
+                this.videoPlayer.play()
+            }
         }
-        //video afspelen
-        // this.videoPlayer.src = './images/shutdown.mp4'
-        // this.videoPlayer.load()
-        // this.videoPlayer.play()
+        if (other.owner instanceof Water) {
+            this.takeDamage()
+        }
+        
     }
 
     takeDamage() {

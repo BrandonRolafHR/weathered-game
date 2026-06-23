@@ -1,6 +1,8 @@
 import '../css/style.css'
-import { Actor, Engine, Scene, Vector, DisplayMode, randomInRange, CollisionType, DegreeOfFreedom, SolverStrategy, Label, FontUnit, Font, Color, Timer } from "excalibur"
-import { Resources, ResourceLoader } from './resources.js'
+import { Actor, Engine, Scene, Vector, DisplayMode, randomInRange, CollisionType, DegreeOfFreedom, SolverStrategy, Label, FontUnit, Font, Color, Timer, BoundingBox } from "excalibur"
+import { Resources, ResourceLoader } from './resources.js';
+import { Game } from './game.js';
+import { ThunderScene } from './thunderscene.js';
 import { Player } from './class/player.js';
 import { PlayerOne } from './class/playerone.js';
 import { Barrier } from './class/barrier.js';
@@ -19,13 +21,23 @@ export class FirstScene extends Scene {
         this.add(this.HealthBar);
         
         this.startGame();
+
+        const delay = randomInRange(10000, 15000);
+
+        setTimeout(() => {
+            this.loadThunderScene();
+        }, delay);
     }
+    
 
     startGame() {
-        // const loadPlayerOne = new PlayerOne();
-        // this.add(loadPlayerOne);
-
-        this.add(new PlayerOne());
+        //add player
+        const player = new PlayerOne()
+        this.add(player)
+        
+        //lock camera to player
+        this.camera.strategy.lockToActor(player)
+        this.camera.strategy.limitCameraBounds(new BoundingBox(0, 0, 3840, 720))
 
         const loadBarrier = new Barrier();
         this.add(loadBarrier);
@@ -45,4 +57,8 @@ export class FirstScene extends Scene {
         const newspaper2 = new Newspaper(900, 600);
         this.add(newspaper2);
     }
+
+    loadThunderScene() {
+    this.engine.goToScene('thunderscene');
+}
 }

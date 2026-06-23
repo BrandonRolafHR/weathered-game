@@ -4,6 +4,7 @@ import { Player } from './player.js'
 import { Barrier } from "./barrier.js";
 import { Newspaper } from "./Newspaper.js";
 import { PlayerState } from './playerstate.js';
+import { Lightning } from "./lightning.js";
 
 export class PlayerOne extends Player {
 
@@ -18,7 +19,6 @@ export class PlayerOne extends Player {
         this.body.useGravity = true;
         this.body.collisionType = CollisionType.Active;
         this.body.limitDegreeOfFreedom.push(DegreeOfFreedom.Rotation);
-        this.pageCount = 0;
     }
 
     onPreUpdate(engine, delta) {
@@ -34,22 +34,25 @@ export class PlayerOne extends Player {
             this.vel = new Vector(-200, this.vel.y)
         }
         else {
-            this.vel = new Vector(0, this.vel.y)
+            // this.vel = new Vector(0, this.vel.y)
+            this.vel = new Vector(this.vel.x * 0.9, this.vel.y)
         }
-
-                PlayerState.x = this.pos.x;
-        PlayerState.y = this.pos.y;
-        PlayerState.health = this.health;
     }
 
     onCollisionStart(event, other) {
         if (other.owner instanceof Barrier) {
             this.onTheGround = true;
         }
+
         if (other.owner instanceof Newspaper) {
             console.log('Player collided with the newspaper');
             this.pageCount++;
             other.owner.showPage(this.pageCount);
+        }
+
+        if (other.owner instanceof Lightning) {
+            console.log('Ouch!');
+            this.takeDamage();
         }
     }
 

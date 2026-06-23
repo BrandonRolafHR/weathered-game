@@ -1,6 +1,8 @@
 import { Actor, CollisionType } from 'excalibur';
 import { Resources } from '../resources.js'
 
+//MISCHIEN KAN DEZE HELE SCRIPT WEG, MOET NOG FF BEKIJKEN @BERTAN
+
 export class Branch extends Actor {
   constructor(x, y) {
     super({

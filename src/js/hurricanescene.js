@@ -1,9 +1,11 @@
 import {
     Scene,
     Actor,
+    Vector,
     CollisionType,
     Color,
-    Rectangle
+    Rectangle,
+    BoundingBox
 } from 'excalibur';
 
 import { Resources } from './resources.js';
@@ -27,6 +29,24 @@ class HurricaneBackground extends Actor {
     }
 }
 
+class HurricanePlatform extends Actor {
+
+    constructor(x, y) {
+        super({
+            x: x,
+            y: y,
+            width: 1280,
+            height: 30,
+        })
+    }
+
+    //hurricane gebruikt dezelfde platform als thunder.
+    onInitialize(engine) {
+        this.graphics.use(Resources.ThunderPlatform.toSprite());
+        this.pos = new Vector(640, 600)
+    }
+}
+
 class WindParticle extends Actor {
     constructor(x, y) {
         super({
@@ -36,6 +56,7 @@ class WindParticle extends Actor {
             height: 4,
             collisionType: CollisionType.PreventCollision
         });
+
         const length = 120 + Math.random() * 300;
 
         this.speed = 700 + Math.random() * 600;
@@ -48,9 +69,6 @@ class WindParticle extends Actor {
                 height: 3,
                 color: Color.fromRGB(220, 240, 255, 0.55)
             })
-
-
-
         );
     }
 
@@ -108,43 +126,149 @@ class FlyingDebris extends Actor {
     }
 }
 
-export class HurricaneScene extends Scene {
-    onActivate() {
-  this.clear();
-  this.startGame();
+class FlyingDamageObject extends Actor {
+    constructor(x, y, sprite, damage = 1, scale = 0.5) {
+        super({
+            x,
+            y,
+            width: 40,
+            height: 40,
+            collisionType: CollisionType.Active
+        });
+
+        this.damage = damage;
+        this.speed = 350 + Math.random() * 450;
+        this.rotationSpeed = -5 + Math.random() * 10;
+        this.z = 130;
+
+        this.body.useGravity = false;
+        this.scale = new Vector(scale, scale);
+
+        this.graphics.use(sprite);
+    }
+
+    onPreUpdate(engine, delta) {
+        const seconds = delta / 1000;
+
+        this.pos.x -= this.speed * seconds;
+        this.pos.y += Math.sin(this.pos.x * 0.02) * 2;
+        this.rotation += this.rotationSpeed * seconds;
+
+        if (this.pos.x < -100) {
+            this.kill();
+        }
+    }
+
+    onCollisionStart(event, other) {
+        const hitActor = other?.owner ?? event?.other?.owner ?? event?.other ?? other;
+
+        if (hitActor && typeof hitActor.takeDamage === 'function') {
+            hitActor.takeDamage(this.damage);
+            this.kill();
+        }
+    }
 }
 
-    startGame() {
+export class HurricaneScene extends Scene {
+    onActivate() {
         this.clear();
+        this.startGame();
+    }
 
+    onDeactivate() {
+        clearInterval(this.objectSpawnInterval);
+    }
+
+    startGame() {
         this.add(new HurricaneBackground());
-
+        this.add(new HurricanePlatform());
         this.add(new Barrier());
-        this.add(new PlayerOne());
+
+        //add player
+        const player = new PlayerOne()
+        this.add(player)
+        
+        //lock camera to player
+        this.camera.strategy.lockToActor(player)
+        this.camera.strategy.limitCameraBounds(new BoundingBox(0, 0, 3840, 720))
 
         this.spawnWindParticles();
         this.spawnDebris();
+
+        this.startObjectSpawner();
+    }
+
+    onPreUpdate(engine, delta) {
+        const player = this.actors.find(actor => actor instanceof PlayerOne);
+
+        if (!player) return;
+
+        const time = Date.now() * 0.003;
+        const windStrength = 8 + Math.sin(time) * 6;
+
+        player.vel = new Vector(
+            player.vel.x - windStrength,
+            player.vel.y
+        );
     }
 
     spawnWindParticles() {
-        for (let i = 0; i < 90; i++) {
+        for (let i = 0; i < 120; i++) {
             this.add(
                 new WindParticle(
                     Math.random() * 1280,
-                    Math.random() * 820
+                    Math.random() * 720
                 )
             );
         }
     }
 
     spawnDebris() {
-        for (let i = 0; i < 25; i++) {
+        for (let i = 0; i < 30; i++) {
             this.add(
                 new FlyingDebris(
                     Math.random() * 1280,
-                    Math.random() * 820
+                    Math.random() * 720
                 )
             );
         }
+    }
+
+    spawnFlyingObject() {
+        const objects = [
+            {
+                sprite: Resources.Branch.toSprite(),
+                damage: 1,
+                scale: 1.5
+            },
+            {
+                sprite: Resources.Box.toSprite(),
+                damage: 1,
+                scale: 1.5
+            },
+            {
+                sprite: Resources.MetalSheet.toSprite(),
+                damage: 2,
+                scale: 0.08
+            }
+        ];
+
+        const chosen = objects[Math.floor(Math.random() * objects.length)];
+
+        const object = new FlyingDamageObject(
+            1380,
+            150 + Math.random() * 450,
+            chosen.sprite,
+            chosen.damage,
+            chosen.scale
+        );
+
+        this.add(object);
+    }
+
+    startObjectSpawner() {
+        this.objectSpawnInterval = setInterval(() => {
+            this.spawnFlyingObject();
+        }, 1200);
     }
 }
