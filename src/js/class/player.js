@@ -1,7 +1,11 @@
-import { Actor, Sprite, Vector, Keys, CollisionType, DegreeOfFreedom, SolverStrategy } from "excalibur"
-import { Resources } from '../resources.js'
+import { Actor, Sprite, Vector, Keys, CollisionType, DegreeOfFreedom, SolverStrategy, EngineEvents, Engine } from "excalibur"
+import { Resources } from '../resources.js';
 import { PlayerState } from './playerstate.js';
 import { Water } from "./water.js";
+import { DeathScene } from "../deathscene.js";
+import { Barrier } from "./barrier.js";
+import { Newspaper } from "./Newspaper.js";
+import { LevelSwitcher } from "../levelswitcher.js";
 
 export class Player extends Actor {
 
@@ -36,7 +40,7 @@ export class Player extends Actor {
     onPreUpdate(engine, delta) {
 
         if (engine.input.keyboard.wasPressed(Keys.ArrowUp) && this.onTheGround) {
-            this.body.applyLinearImpulse(new Vector(0, -350 * delta));
+            this.body.applyLinearImpulse(new Vector(0, -3500));
         }
 
         if (engine.input.keyboard.isHeld(Keys.ArrowRight)) {
@@ -48,9 +52,14 @@ export class Player extends Actor {
         else {
             this.vel = new Vector(0, this.vel.y)
         }
+
+        //video afspelen
+            if (this.pageCount === 5) {
+                this.onFinnish()
+            }
     }
 
-    onCollisionStart(event, other) {
+    onCollisionStart(event, other, engine) {
         if (other.owner instanceof Barrier) {
             this.onTheGround = true;
         }
@@ -59,41 +68,42 @@ export class Player extends Actor {
             this.pageCount++;
             other.owner.showPage(this.pageCount);
 
-            if (this.videoOverlay) {
-                this.videoOverlay.style.position = 'absolute';
-                this.videoOverlay.style.top = '0';
-                this.videoOverlay.style.left = '0';
-                this.videoOverlay.style.width = '1280px';
-                this.videoOverlay.style.height = '720px';
-                this.videoOverlay.style.zIndex = '9999';
-                this.videoOverlay.style.display = 'block';
-                //this.videooverlay.classlist.add is beter en het moet allemaal in de css class.
-            }
+            
 
-            //video afspelen
-            if (this.pageCount === 6) {
-                this.videoPlayer.src = './images/shutdown.mp4'
-                this.videoPlayer.load()
-                this.videoPlayer.play()
-            }
-        }
-        if (other.owner instanceof Water) {
-            this.takeDamage()
+            
         }
         
     }
-    takeDamage() {
+
+    takeDamage(engine) {
         if(PlayerState.isSwitchingScene) return;
 
         this.health--;
 
         PlayerState.health = this.health;
 
-        console.log(`HP: ${this.health}`);
+        const healthBar = this.scene.HealthBar;
+        healthBar.setHealth(this.health);
+
+        this.graphics.use(Resources.Damaged.toSprite());
+
+        if(this.health > 0){
+            setTimeout(() => {
+                this.graphics.use(Resources.PlayerOne.toSprite());
+            }, 300);
+        }
 
         if (this.health <= 0) {
-            this.kill();
-            // this.scene.engine.goToScene("gameover");
+            this.graphics.use(Resources.Dead.toSprite());
+            setTimeout(() => {
+            this.kill()
+
+            //naar de deathscreen
+            this.scene.engine.levelSwitcher.stop()
+            this.scene.clear()
+            this.scene.engine.add('deathscene', new DeathScene)
+            this.scene.engine.goToScene('deathscene')
+        }, 3000);
         }
     }
 
@@ -101,5 +111,30 @@ export class Player extends Actor {
         if (other.owner instanceof Barrier) {
             this.onTheGround = false;
         }
+    }
+
+    onFinnish() {
+        if (this.videoOverlay) {
+            this.videoOverlay.style.position = 'absolute';
+            this.videoOverlay.style.top = '0';
+            this.videoOverlay.style.left = '0';
+            this.videoOverlay.style.width = '100vw';
+            this.videoOverlay.style.height = '100vh';
+            this.videoOverlay.style.zIndex = '9999';
+            this.videoOverlay.style.display = 'block';
+            // this.videoOverlay.classList.add('video-play')
+            console.log(this.videoOverlay)
+        }
+
+        this.videoPlayer.src = './images/shutdown.mp4'
+        this.videoPlayer.load()
+        this.videoPlayer.play()
+
+        setTimeout(() => {
+            this.videoPlayer.pause()
+            this.videoPlayer.currentTime = 0
+            // this.videoOverlay.classList.remove('video-play')
+            this.videoOverlay.style.display = 'none'
+        }, 3000)
     }
 }

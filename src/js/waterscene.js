@@ -4,6 +4,7 @@ import { Background } from "./class/background";
 import { PlayerOne } from "./class/playerone";
 import { Ground } from "./class/ground";
 import { Water } from "./class/water";
+import { HealthBar } from "./class/HealthBar";
 
 export class waterScene extends Scene {
     constructor() {
@@ -12,9 +13,15 @@ export class waterScene extends Scene {
 
     onInitialize() {
 
+        this.HealthBar = new HealthBar()
+        this.add(this.HealthBar)
+
         //add player
         const player = new PlayerOne()
         this.add(player)
+
+        this.HealthBar = new HealthBar();
+        this.add(this.HealthBar);
 
         //lock camera to player
         this.camera.strategy.lockToActor(player)

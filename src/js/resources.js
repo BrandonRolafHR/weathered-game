@@ -3,6 +3,8 @@ import { Branch } from './class/branch'
 
 const Resources = {
     PlayerOne: new ImageSource('images/bassie.png'),
+    Damaged: new ImageSource('images/bassiePijn.png'),
+    Dead: new ImageSource('images/bassieDood.png'),
     Background: new ImageSource('images/standard-denver.png'),
     Ground: new ImageSource('images/standard-platform.png'),
     Branch: new ImageSource('images/branch.png'),
@@ -17,8 +19,13 @@ const Resources = {
     IncomingLightning: new ImageSource('images/incoming-lightning.png'),
     Water: new ImageSource('images/water.png'),
 
-    //Huricane scene images:
     HurricaneBackground: new ImageSource('images/hurricane-background.png'),
+
+    page1: new ImageSource('images/Page1.png'),
+    page2: new ImageSource('images/Page2.png'),
+    page3: new ImageSource('images/Page3.png'),
+    page4: new ImageSource('images/Page4.png'),
+    page5: new ImageSource('images/Page5.png')
 }
 
 const ResourceLoader = new Loader()
