@@ -6,11 +6,11 @@ export class Barrier extends Actor {
         super({
             x: x,
             y: y,
-            width: 1280,
+            width: 3840,
             height: 30,
         })
     
-        this.pos = new Vector(640, 620)
+        this.pos = new Vector(1920, 620)
         this.body.collisionType = CollisionType.Fixed
     }
 }

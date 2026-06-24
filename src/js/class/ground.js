@@ -3,19 +3,12 @@ import { Resources } from '../resources.js'
 
 export class Ground extends Actor {
 
-    constructor(x, y) {
-        super({
-            x: x,
-            y: y,
-            width: 1280,
-            height: 30,
-        })
+    constructor() {
+        super({})
         this.z = -1
     }
 
     onInitialize(engine) {
         this.graphics.use(Resources.Ground.toSprite());
-        this.pos = new Vector(640, 670)
-
     }
 }

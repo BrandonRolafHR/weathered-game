@@ -1,5 +1,5 @@
 import '../css/style.css'
-import { Actor, Engine, Scene, Vector, DisplayMode, randomInRange, CollisionType, DegreeOfFreedom, SolverStrategy, Label, FontUnit, Font, Color, Timer, BoundingBox } from "excalibur"
+import { Actor, Engine, Scene, Vector, DisplayMode, randomInRange, CollisionType, DegreeOfFreedom, SolverStrategy, Label, FontUnit, Font, Color, Timer, BoundingBox, vec } from "excalibur"
 import { Resources, ResourceLoader } from './resources.js';
 import { Game } from './game.js';
 import { ThunderScene } from './thunderscene.js';
@@ -36,12 +36,33 @@ export class FirstScene extends Scene {
         const loadBarrier = new Barrier();
         this.add(loadBarrier);
 
-        const loadBackground = new Background();
-        this.add(loadBackground);
+        //load backgrounds
+        const loadBackground1 = new Background();
+        loadBackground1.pos = new Vector(0, 0)
+        this.add(loadBackground1);
 
-        const loadGround = new Ground();
-        this.add(loadGround);
+        const loadBackground2 = new Background();
+        loadBackground2.pos = new Vector(1280, 0)
+        this.add(loadBackground2);
 
+        const loadBackground3 = new Background();
+        loadBackground3.pos = new Vector(2560, 0)
+        this.add(loadBackground3);
+
+        //load grounds
+        const loadGround1 = new Ground();
+        loadGround1.pos = new Vector(640, 670)
+        this.add(loadGround1);
+
+        const loadGround2 = new Ground();
+        loadGround2.pos = new Vector(1920, 670)
+        this.add(loadGround2);
+
+        const loadGround3 = new Ground();
+        loadGround3.pos = new Vector(3200, 670);
+        this.add(loadGround3);
+
+        //tests
         const branch = new Branch(500, 400);
         this.add(branch);
 

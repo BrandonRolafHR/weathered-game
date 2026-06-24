@@ -15,39 +15,26 @@ import { HealthBar } from './class/HealthBar.js';
 
 class HurricaneBackground extends Actor {
     constructor() {
-        super({
-            x: 640,
-            y: 360,
-            width: 1280,
-            height: 720
-        });
+        super({});
+        this.anchor = new Vector(0, 0)
 
         this.z = -10;
     }
 
     onInitialize() {
         this.graphics.use(Resources.HurricaneBackground.toSprite());
-
-        this.HealthBar = new HealthBar();
-        this.add(this.HealthBar);
     }
 }
 
 class HurricanePlatform extends Actor {
 
-    constructor(x, y) {
-        super({
-            x: x,
-            y: y,
-            width: 1280,
-            height: 30,
-        })
+    constructor() {
+        super({})
     }
 
     //hurricane gebruikt dezelfde platform als thunder.
     onInitialize(engine) {
         this.graphics.use(Resources.ThunderPlatform.toSprite());
-        this.pos = new Vector(640, 600)
     }
 }
 
@@ -187,8 +174,34 @@ export class HurricaneScene extends Scene {
     }
 
     startGame() {
-        this.add(new HurricaneBackground());
-        this.add(new HurricanePlatform());
+        // this.add(new HurricaneBackground());
+        // this.add(new HurricanePlatform());
+
+        const loadBackground1 = new HurricaneBackground();
+                loadBackground1.pos = new Vector(0, 0)
+                this.add(loadBackground1);
+        
+                const loadBackground2 = new HurricaneBackground();
+                loadBackground2.pos = new Vector(1280, 0)
+                this.add(loadBackground2);
+        
+                const loadBackground3 = new HurricaneBackground();
+                loadBackground3.pos = new Vector(2560, 0)
+                this.add(loadBackground3);
+        
+                //load grounds
+                const loadGround1 = new HurricanePlatform();
+                loadGround1.pos = new Vector(640, 670)
+                this.add(loadGround1);
+        
+                const loadGround2 = new HurricanePlatform();
+                loadGround2.pos = new Vector(1920, 670)
+                this.add(loadGround2);
+        
+                const loadGround3 = new HurricanePlatform();
+                loadGround3.pos = new Vector(3200, 670);
+                this.add(loadGround3);
+
         this.add(new Barrier());
 
         //add player

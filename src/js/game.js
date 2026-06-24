@@ -78,8 +78,7 @@ export class Game extends Engine {
     }
 
     if (this.input.keyboard.wasPressed(Keys.F)) {
-      this.add('waterscene', new waterScene)
-      this.goToScene('thunderscene')
+      this.goToScene('waterscene')
     }
   }
 }

@@ -3,17 +3,11 @@ import { Resources } from '../resources.js'
 
 export class ThunderPlatform extends Actor {
 
-    constructor(x, y) {
-        super({
-            x: x,
-            y: y,
-            width: 1280,
-            height: 30,
-        })
+    constructor() {
+        super({})
     }
 
     onInitialize(engine) {
         this.graphics.use(Resources.ThunderPlatform.toSprite());
-        this.pos = new Vector(640, 670)
     }
 }

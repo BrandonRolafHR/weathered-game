@@ -15,9 +15,6 @@ export class Water extends Actor {
     }
 
     onInitialize(engine) {
-        //for wrapping
-        this.on('exitviewport', (e) => this.newPos())
-
         //info for Actor
         this.graphics.use(Resources.Water.toSprite())
         this.vel = new Vector(100, 10)
@@ -26,14 +23,18 @@ export class Water extends Actor {
         if(this.number === 1) {
             this.pos = new Vector(640, 850)
         } else if(this.number === 2) {
-            this.pos = new Vector(-638, 850)
+            this.pos = new Vector(1920, 850)
+        } else if (this.number === 3) {
+            this.pos = new Vector(3200, 850)
+        } else if (this.number === 4) {
+            this.pos = new Vector(-640, 850)
         }
     }
 
     //function for the new pos whenout of bounds
     newPos() {
         this.yPos = this.pos.y
-        this.pos = new Vector(-638, this.yPos)
+        this.pos = new Vector(-640, this.yPos)
     }
 
     //waves up and down
@@ -42,6 +43,10 @@ export class Water extends Actor {
             this.vel.y = this.vel.y * -1
         } else if (this.pos.y <= 750) {
             this.vel.y = this.vel.y * -1
+        }
+
+        if (this.pos.x >= 4480) {
+            this.newPos()
         }
     }
 }
