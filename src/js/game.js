@@ -33,7 +33,7 @@ export class Game extends Engine {
     this.add('firstscene', new FirstScene());
     this.add('thunderscene', new ThunderScene());
     this.add('hurricanescene', new HurricaneScene());
-    this.add('waterscene', new waterScene)
+    this.add('waterscene', new waterScene())
 
     this.levelSwitcher = new LevelSwitcher(this, [
       'firstscene',

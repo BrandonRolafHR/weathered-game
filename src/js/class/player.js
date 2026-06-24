@@ -72,9 +72,6 @@ export class Player extends Actor {
 
             
         }
-        if (other.owner instanceof Water) {
-            this.takeDamage(engine)
-        }
         
     }
 

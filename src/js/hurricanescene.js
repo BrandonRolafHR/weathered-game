@@ -177,6 +177,9 @@ export class HurricaneScene extends Scene {
     onActivate() {
         this.clear();
         this.startGame();
+
+        this.HealthBar = new HealthBar()
+        this.add(this.HealthBar)
     }
 
     onDeactivate() {
