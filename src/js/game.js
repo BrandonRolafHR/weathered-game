@@ -1,6 +1,6 @@
 import '../css/style.css';
 
-import { Engine, Vector, DisplayMode, SolverStrategy, Keys, BoundingBox } from 'excalibur';
+import { Engine, Vector, DisplayMode, SolverStrategy, Keys, BoundingBox, Actor } from 'excalibur';
 import { ResourceLoader } from './resources.js';
 import { StartScene } from './startscene.js';
 import { FirstScene } from './firstscene.js';
@@ -70,6 +70,11 @@ export class Game extends Engine {
     if(this.showingPage && this.input.keyboard.wasPressed(Keys.Space)) {
       this.pause()
       this.showingPage = false;
+      const speler = game.currentScene.actors.find(Actor => Actor instanceof Player)
+      if(speler.pageCount === 5) {
+        speler.onFinnish()
+        console.log("speel video af")
+      }
     }
 
     if (this.input.keyboard.wasPressed(Keys.F)) {

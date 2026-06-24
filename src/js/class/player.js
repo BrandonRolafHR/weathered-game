@@ -52,6 +52,11 @@ export class Player extends Actor {
         else {
             this.vel = new Vector(0, this.vel.y)
         }
+
+        //video afspelen
+            if (this.pageCount === 5) {
+                this.onFinnish()
+            }
     }
 
     onCollisionStart(event, other, engine) {
@@ -63,23 +68,9 @@ export class Player extends Actor {
             this.pageCount++;
             other.owner.showPage(this.pageCount);
 
-            if (this.videoOverlay) {
-                this.videoOverlay.style.position = 'absolute';
-                this.videoOverlay.style.top = '0';
-                this.videoOverlay.style.left = '0';
-                this.videoOverlay.style.width = '1280px';
-                this.videoOverlay.style.height = '720px';
-                this.videoOverlay.style.zIndex = '9999';
-                this.videoOverlay.style.display = 'block';
-                //this.videooverlay.classlist.add is beter en het moet allemaal in de css class.
-            }
+            
 
-            //video afspelen
-            if (this.pageCount === 6) {
-                this.videoPlayer.src = './images/shutdown.mp4'
-                this.videoPlayer.load()
-                this.videoPlayer.play()
-            }
+            
         }
         
     }
@@ -120,5 +111,30 @@ export class Player extends Actor {
         if (other.owner instanceof Barrier) {
             this.onTheGround = false;
         }
+    }
+
+    onFinnish() {
+        if (this.videoOverlay) {
+            this.videoOverlay.style.position = 'absolute';
+            this.videoOverlay.style.top = '0';
+            this.videoOverlay.style.left = '0';
+            this.videoOverlay.style.width = '100vw';
+            this.videoOverlay.style.height = '100vh';
+            this.videoOverlay.style.zIndex = '9999';
+            this.videoOverlay.style.display = 'block';
+            // this.videoOverlay.classList.add('video-play')
+            console.log(this.videoOverlay)
+        }
+
+        this.videoPlayer.src = './images/shutdown.mp4'
+        this.videoPlayer.load()
+        this.videoPlayer.play()
+
+        setTimeout(() => {
+            this.videoPlayer.pause()
+            this.videoPlayer.currentTime = 0
+            // this.videoOverlay.classList.remove('video-play')
+            this.videoOverlay.style.display = 'none'
+        }, 3000)
     }
 }
