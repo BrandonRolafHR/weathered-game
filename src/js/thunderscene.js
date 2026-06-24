@@ -8,6 +8,7 @@ import { PlayerOne } from './class/playerone.js';
 import { Barrier } from './class/barrier.js';
 import { IncomingLightning } from './class/incominglightning.js';
 import { Lightning } from './class/lightning.js';
+import { HealthBar } from './class/HealthBar.js';
 
 export class ThunderScene extends Scene {
     onActivate() {
