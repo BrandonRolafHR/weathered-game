@@ -15,8 +15,8 @@ export class ThunderScene extends Scene {
         this.clear();
         this.startGame();
 
-        this.HealthBar = new HealthBar
-        this.add(this.HealthBar)
+        this.HealthBar = new HealthBar();
+        this.add(this.HealthBar);
     }
 
     startGame() {

@@ -29,7 +29,6 @@ export class Game extends Engine {
       },
       suppressPlayButton: true
     });
-
     this.add('start', new StartScene());
     this.add('firstscene', new FirstScene());
     this.add('thunderscene', new ThunderScene());

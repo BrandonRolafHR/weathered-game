@@ -27,6 +27,9 @@ class HurricaneBackground extends Actor {
 
     onInitialize() {
         this.graphics.use(Resources.HurricaneBackground.toSprite());
+
+        this.HealthBar = new HealthBar();
+        this.add(this.HealthBar);
     }
 }
 
