@@ -9,6 +9,8 @@ import { Barrier } from './class/barrier.js';
 import { IncomingLightning } from './class/incominglightning.js';
 import { Lightning } from './class/lightning.js';
 import { HealthBar } from './class/HealthBar.js';
+import { Background } from './class/background.js';
+import { Ground } from './class/ground.js';
 
 export class ThunderScene extends Scene {
     onActivate() {

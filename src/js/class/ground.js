@@ -10,11 +10,12 @@ export class Ground extends Actor {
             width: 1280,
             height: 30,
         })
+        this.z = -1
     }
 
     onInitialize(engine) {
         this.graphics.use(Resources.Ground.toSprite());
-        this.pos = new Vector(640, 555)
+        this.pos = new Vector(640, 670)
 
     }
 }
