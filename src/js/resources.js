@@ -13,8 +13,8 @@ const Resources = {
     Box: new ImageSource('images/box.png'),
     MetalSheet: new ImageSource('images/metalsheet.png'),
 
-    ThunderPlatform: new ImageSource('images/thunder-background.png'),
-    ThunderBackground: new ImageSource('images/thunder-platform.png'),
+    ThunderBackground: new ImageSource('images/thunder-background.png'),
+    ThunderPlatform: new ImageSource('images/thunder-platform.png'),
     Lightning: new ImageSource('images/lightning.png'),
     IncomingLightning: new ImageSource('images/incoming-lightning.png'),
     Water: new ImageSource('images/water.png'),

@@ -1,11 +1,11 @@
-import { Actor } from "excalibur"
+import { Actor, Vector } from "excalibur"
 import { Resources } from '../resources.js'
 
 export class ThunderBackground extends Actor {
     constructor() {
         super({
             x: 640,
-            y: 360,
+            y: 320,
             width: 1280,
             height: 720
         })

@@ -14,6 +14,6 @@ export class ThunderPlatform extends Actor {
 
     onInitialize(engine) {
         this.graphics.use(Resources.ThunderPlatform.toSprite());
-        this.pos = new Vector(640, 600)
+        this.pos = new Vector(640, 670)
     }
 }
