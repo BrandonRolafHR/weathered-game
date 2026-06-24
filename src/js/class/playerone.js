@@ -5,6 +5,7 @@ import { Barrier } from "./barrier.js";
 import { Newspaper } from "./Newspaper.js";
 import { PlayerState } from './playerstate.js';
 import { Lightning } from "./lightning.js";
+import { Water } from "./water.js";
 
 export class PlayerOne extends Player {
 
@@ -50,7 +51,7 @@ export class PlayerOne extends Player {
             other.owner.showPage(this.pageCount);
         }
 
-        if (other.owner instanceof Lightning) {
+        if (other.owner instanceof Lightning || other.owner instanceof Water) {
             console.log('Ouch!');
             this.takeDamage();
         }

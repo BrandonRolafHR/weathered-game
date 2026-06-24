@@ -4,6 +4,7 @@ import { Background } from "./class/background";
 import { PlayerOne } from "./class/playerone";
 import { Ground } from "./class/ground";
 import { Water } from "./class/water";
+import { HealthBar } from "./class/HealthBar";
 
 export class waterScene extends Scene {
     constructor() {
