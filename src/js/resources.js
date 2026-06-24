@@ -22,6 +22,10 @@ const Resources = {
     HurricaneBackground: new ImageSource('images/hurricane-background.png'),
 
     page1: new ImageSource('images/Page1.png'),
+    page2: new ImageSource('images/Page2.png'),
+    page3: new ImageSource('images/Page3.png'),
+    page4: new ImageSource('images/Page4.png'),
+    page5: new ImageSource('images/Page5.png')
 }
 
 const ResourceLoader = new Loader()
