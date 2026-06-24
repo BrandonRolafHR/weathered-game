@@ -29,7 +29,6 @@ export class Game extends Engine {
       },
       suppressPlayButton: true
     });
-
     this.add('start', new StartScene());
     this.add('firstscene', new FirstScene());
     this.add('thunderscene', new ThunderScene());
@@ -49,7 +48,7 @@ export class Game extends Engine {
   }
 
   startFirstScene() {
-    this.goToScene('firstscene');
+    this.goToScene('thunderscene');
     // this.goToScene('firstscene');
     // this.goToScene('hurricanescene');
   }

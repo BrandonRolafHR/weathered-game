@@ -16,6 +16,9 @@ export class waterScene extends Scene {
         const player = new PlayerOne()
         this.add(player)
 
+        this.HealthBar = new HealthBar();
+        this.add(this.HealthBar);
+
         //lock camera to player
         this.camera.strategy.lockToActor(player)
         this.camera.strategy.limitCameraBounds(new BoundingBox(0, 0, 3840, 720))
