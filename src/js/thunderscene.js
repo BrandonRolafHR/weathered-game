@@ -22,11 +22,31 @@ export class ThunderScene extends Scene {
     }
 
     startGame() {
-        const loadThunderBackground = new ThunderBackground();
-        this.add(loadThunderBackground);
+        //load backgrounds
+        const loadBackground1 = new ThunderBackground();
+        loadBackground1.pos = new Vector(0, 0)
+        this.add(loadBackground1);
 
-        const loadThunderPlatform = new ThunderPlatform();
-        this.add(loadThunderPlatform);
+        const loadBackground2 = new ThunderBackground();
+        loadBackground2.pos = new Vector(1280, 0)
+        this.add(loadBackground2);
+
+        const loadBackground3 = new ThunderBackground();
+        loadBackground3.pos = new Vector(2560, 0)
+        this.add(loadBackground3);
+
+        //load grounds
+        const loadGround1 = new ThunderPlatform();
+        loadGround1.pos = new Vector(640, 670)
+        this.add(loadGround1);
+
+        const loadGround2 = new ThunderPlatform();
+        loadGround2.pos = new Vector(1920, 670)
+        this.add(loadGround2);
+
+        const loadGround3 = new ThunderPlatform();
+        loadGround3.pos = new Vector(3200, 670);
+        this.add(loadGround3);
 
         const loadBarrier = new Barrier();
         this.add(loadBarrier);

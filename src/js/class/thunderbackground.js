@@ -3,12 +3,8 @@ import { Resources } from '../resources.js'
 
 export class ThunderBackground extends Actor {
     constructor() {
-        super({
-            x: 640,
-            y: 320,
-            width: 1280,
-            height: 720
-        })
+        super({})
+        this.anchor = new Vector(0, 0)
         this.z = -2
     }
 
