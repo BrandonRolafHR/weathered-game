@@ -48,7 +48,7 @@ export class Game extends Engine {
   }
 
   startFirstScene() {
-    this.goToScene('thunderscene');
+    this.goToScene('firstscene');
     // this.goToScene('firstscene');
     // this.goToScene('hurricanescene');
   }
