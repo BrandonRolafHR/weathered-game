@@ -13,7 +13,7 @@ export class waterScene extends Scene {
 
     onInitialize() {
 
-        this.HealthBar = new HealthBar
+        this.HealthBar = new HealthBar()
         this.add(this.HealthBar)
 
         //add player
