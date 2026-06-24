@@ -11,6 +11,7 @@ import { Ground } from './class/ground.js';
 import { Branch } from './class/branch.js';
 import { Newspaper } from './class/Newspaper.js';
 import { HealthBar } from './class/HealthBar.js';
+import { Platform } from './class/plaform.js';
 
 export class FirstScene extends Scene {
 
@@ -25,13 +26,6 @@ export class FirstScene extends Scene {
     
 
     startGame() {
-        //add player
-        const player = new PlayerOne()
-        this.add(player)
-        
-        //lock camera to player
-        this.camera.strategy.lockToActor(player)
-        this.camera.strategy.limitCameraBounds(new BoundingBox(0, 0, 3840, 720))
 
         const loadBarrier = new Barrier();
         this.add(loadBarrier);
@@ -57,7 +51,22 @@ export class FirstScene extends Scene {
         const newspaper4 = new Newspaper(500, 600);
         this.add(newspaper4);
 
-        const newspaper5 = new Newspaper(900, 400);
-        this.add(newspaper5);
+        // const newspaper5 = new Newspaper(900, 400);
+        // this.add(newspaper5);
+
+        const platform1 = new Platform(900, 500);
+        this.add(platform1)
+
+              //add player
+        const player = new PlayerOne()
+        this.add(player)
+        
+        //lock camera to player
+        this.camera.strategy.lockToActor(player)
+        this.camera.strategy.limitCameraBounds(new BoundingBox(0, 0, 3840, 720))
     }
+
+    loadThunderScene() {
+    this.engine.goToScene('thunderscene');
+}
 }

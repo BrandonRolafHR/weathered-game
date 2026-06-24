@@ -11,6 +11,7 @@ import {
 import { Resources } from './resources.js';
 import { PlayerOne } from './class/playerone.js';
 import { Barrier } from './class/barrier.js';
+import { HealthBar } from './class/HealthBar.js';
 
 class HurricaneBackground extends Actor {
     constructor() {
@@ -26,9 +27,6 @@ class HurricaneBackground extends Actor {
 
     onInitialize() {
         this.graphics.use(Resources.HurricaneBackground.toSprite());
-
-        this.HealthBar = new HealthBar();
-        this.add(this.HealthBar);
     }
 }
 
@@ -176,6 +174,10 @@ export class HurricaneScene extends Scene {
     onActivate() {
         this.clear();
         this.startGame();
+
+        
+        this.HealthBar = new HealthBar();
+        this.add(this.HealthBar);
     }
 
     onDeactivate() {

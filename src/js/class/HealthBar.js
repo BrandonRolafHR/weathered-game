@@ -45,7 +45,6 @@ export class HealthBar extends ScreenElement {
 
   updateHealth() {
     const ratio = Math.max(0, Math.min(1, PlayerState.health / PlayerState.maxHealth));
-    console.log(ratio)
     
     // Doelschaal instellen
     this.targetScaleX = ratio;
