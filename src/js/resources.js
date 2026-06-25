@@ -1,11 +1,13 @@
 import { ImageSource, Sound, Resource, Loader, ImageWrapping } from 'excalibur'
 import { Branch } from './class/branch'
+import { Platform } from './class/platfrom'
 import { StartScene } from './startscene'
 import { FirstScene } from './firstscene'
 import { Lightning } from './class/lightning'
 import { ThunderScene } from './thunderscene'
 import { waterScene } from './waterscene'
 import { HurricaneScene } from './hurricanescene'
+import { DeathScene } from './deathscene'
 
 const Resources = {
     //#region Images
@@ -14,6 +16,7 @@ const Resources = {
     Dead: new ImageSource('images/bassieDood.png'),
     Background: new ImageSource('images/standard-denver.png'),
     Ground: new ImageSource('images/standard-platform.png'),
+    Platform: new ImageSource('images/small-platfrom.png'),
     Branch: new ImageSource('images/branch.png'),
     NewsPaper: new ImageSource('images/NewsPaper.png'),
     Branch: new ImageSource('images/branch.png'),
@@ -41,7 +44,8 @@ const Resources = {
     ThunderScene: new Sound("/sounds/thunderstorm.mp3"),
     LightningSound: new Sound("/sounds/thunderclap.mp3"),
     WaterScene: new Sound("/sounds/water.mp3"),
-    HurricaneScene: new Sound ("/sounds/hurricane.mp3")
+    HurricaneScene: new Sound ("/sounds/hurricane.mp3"),
+    DeathScene: new Sound ("/sounds/losing.mp3")
     
     //#endregion
 }
