@@ -10,6 +10,8 @@ import { Water } from "./water.js";
 export class PlayerOne extends Player {
 
     onInitialize(engine) {
+        super.onInitialize(engine)
+
         this.playerone = Resources.PlayerOne.toSprite();
 
         this.graphics.use(this.playerone);
@@ -47,8 +49,8 @@ export class PlayerOne extends Player {
 
         if (other.owner instanceof Newspaper) {
             console.log('Player collided with the newspaper');
-            this.pageCount++;
-            other.owner.showPage(this.pageCount);
+            PlayerState.pageCount++;
+            other.owner.showPage(PlayerState.pageCount);
         }
 
         if (other.owner instanceof Lightning || other.owner instanceof Water) {
