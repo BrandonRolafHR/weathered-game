@@ -6,6 +6,8 @@ import { Newspaper } from "./Newspaper.js";
 import { PlayerState } from './playerstate.js';
 import { Lightning } from "./lightning.js";
 import { Water } from "./water.js";
+import { LevelSwitcher } from "../levelswitcher.js";
+
 
 export class PlayerOne extends Player {
 
@@ -51,6 +53,8 @@ export class PlayerOne extends Player {
             console.log('Player collided with the newspaper');
             PlayerState.pageCount++;
             other.owner.showPage(PlayerState.pageCount);
+            this.scene.engine.levelSwitcher.stop()
+            
         }
 
         if (other.owner instanceof Lightning || other.owner instanceof Water) {
