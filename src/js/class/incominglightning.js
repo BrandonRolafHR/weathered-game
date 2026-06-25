@@ -14,7 +14,7 @@ export class IncomingLightning extends Actor {
 
         this.graphics.use(sprite);
 
-        this.scale = new Vector(0.4, 0.4);
+        this.scale = new Vector(0.35, 0.35);
 
         this.actions.delay(1000);
         this.actions.callMethod(() => {

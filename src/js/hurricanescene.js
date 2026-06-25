@@ -70,7 +70,7 @@ class WindParticle extends Actor {
         this.pos.y += 80 * seconds;
 
         if (this.pos.x < -300) {
-            this.pos.x = engine.drawWidth + 300;
+            this.pos.x = 3840 + 300;
             this.pos.y = Math.random() * engine.drawHeight;
         }
 
@@ -85,8 +85,8 @@ class FlyingDebris extends Actor {
         super({
             x,
             y,
-            width: 16,
-            height: 8,
+            width: 35,
+            height: 35,
             collisionType: CollisionType.PreventCollision
         });
 
@@ -122,8 +122,8 @@ class FlyingDamageObject extends Actor {
         super({
             x,
             y,
-            width: 40,
-            height: 40,
+            width: 30,
+            height: 30,
             collisionType: CollisionType.Active
         });
 
@@ -236,7 +236,7 @@ export class HurricaneScene extends Scene {
         for (let i = 0; i < 120; i++) {
             this.add(
                 new WindParticle(
-                    Math.random() * 1280,
+                    Math.random() * 3840,
                     Math.random() * 720
                 )
             );
@@ -247,7 +247,7 @@ export class HurricaneScene extends Scene {
         for (let i = 0; i < 30; i++) {
             this.add(
                 new FlyingDebris(
-                    Math.random() * 1280,
+                    Math.random() * 3840,
                     Math.random() * 720
                 )
             );
@@ -276,7 +276,7 @@ export class HurricaneScene extends Scene {
         const chosen = objects[Math.floor(Math.random() * objects.length)];
 
         const object = new FlyingDamageObject(
-            1380,
+            3840,
             150 + Math.random() * 450,
             chosen.sprite,
             chosen.damage,
