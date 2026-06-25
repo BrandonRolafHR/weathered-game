@@ -6,6 +6,7 @@ import { Newspaper } from "./Newspaper.js";
 import { PlayerState } from './playerstate.js';
 import { Lightning } from "./lightning.js";
 import { Water } from "./water.js";
+import { Platform } from "./platfrom.js";
 import { LevelSwitcher } from "../levelswitcher.js";
 
 
@@ -45,7 +46,7 @@ export class PlayerOne extends Player {
     }
 
     onCollisionStart(event, other) {
-        if (other.owner instanceof Barrier) {
+        if (other.owner instanceof Barrier || other.owner instanceof Platform) {
             this.onTheGround = true;
         }
 
@@ -64,7 +65,7 @@ export class PlayerOne extends Player {
     }
 
     onCollisionEnd(event, other) {
-        if (other.owner instanceof Barrier) {
+        if (other.owner instanceof Barrier || other.owner instanceof Platform) {
             this.onTheGround = false;
         }
     }
