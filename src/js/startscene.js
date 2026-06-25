@@ -1,19 +1,26 @@
 import { Scene } from 'excalibur';
 import { startMenuAnimation, stopMenuAnimation } from './startsceneCanvas.js';
+import { Resources } from './resources.js';
 
 export class StartScene extends Scene {
-  onActivate() {
+  async onActivate() {
+
+    let soundOn = true;
+
     document.getElementById('scene').style.display = 'block';
+
+    Resources.StartScene.loop = true;
+    Resources.StartScene.play();
     startMenuAnimation();
   }
 
   onDeactivate() {
     stopMenuAnimation();
     document.getElementById('scene').style.display = 'none';
+
+    Resources.StartScene.stop();
   }
 }
-
-let soundOn = true;
 
 // Start the game
 document.getElementById('btn-start').addEventListener('click', () => {

@@ -19,16 +19,21 @@ export class FirstScene extends Scene {
 
         this.HealthBar = new HealthBar();
         this.add(this.HealthBar);
-        
+
         this.startGame();
+
+        Resources.FirstScene.loop = true;
+        Resources.FirstScene.play();
     }
-    
+    onDeactivate() {
+        Resources.FirstScene.stop();
+    }
 
     startGame() {
         //add player
         const player = new PlayerOne()
         this.add(player)
-        
+
         //lock camera to player
         this.camera.strategy.lockToActor(player)
         this.camera.strategy.limitCameraBounds(new BoundingBox(0, 0, 3840, 720))
