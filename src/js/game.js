@@ -70,6 +70,8 @@ export class Game extends Engine {
     if(this.showingPage && this.input.keyboard.wasPressed(Keys.Space)) {
       this.pause()
       this.showingPage = false;
+      this.levelSwitcher.startTimer()
+      
       const speler = game.currentScene.actors.find(Actor => Actor instanceof Player)
       if(speler.pageCount === 5) {
         speler.onFinnish()
