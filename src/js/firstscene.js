@@ -12,6 +12,7 @@ import { Branch } from './class/branch.js';
 import { Newspaper } from './class/Newspaper.js';
 import { HealthBar } from './class/HealthBar.js';
 import { PlayerState } from './class/playerstate.js';
+import { Sound } from 'excalibur';
 
 export class FirstScene extends Scene {
     player;
@@ -22,8 +23,14 @@ export class FirstScene extends Scene {
 
         this.HealthBar = new HealthBar();
         this.add(this.HealthBar);
-        
+
         this.startGame();
+
+        Resources.FirstScene.loop = true;
+        Resources.FirstScene.play();
+    }
+    onDeactivate() {
+        Resources.FirstScene.stop();
     }
 
     startGame() {

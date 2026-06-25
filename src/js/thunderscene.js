@@ -1,5 +1,5 @@
 import '../css/style.css'
-import { Actor, Scene, BoundingBox, Sprite, Vector, Keys, CollisionType, DegreeOfFreedom, SolverStrategy, Timer, Axis } from "excalibur"
+import { Actor, Scene, Sound, BoundingBox, Sprite, Vector, Keys, CollisionType, DegreeOfFreedom, SolverStrategy, Timer, Axis } from "excalibur"
 import { Resources } from './resources.js'
 import { ThunderBackground } from "./class/thunderbackground.js";
 import { ThunderPlatform } from "./class/thunderplatform.js";
@@ -19,8 +19,14 @@ export class ThunderScene extends Scene {
 
         this.HealthBar = new HealthBar();
         this.add(this.HealthBar);
+
+        Resources.ThunderScene.loop = true;
+        Resources.ThunderScene.play();
     }
 
+    onDeactivate(){
+        Resources.ThunderScene.stop();
+    }
     startGame() {
         //load backgrounds
         const loadBackground1 = new ThunderBackground();
