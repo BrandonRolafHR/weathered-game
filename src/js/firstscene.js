@@ -133,9 +133,6 @@ export class FirstScene extends Scene {
 
         const platform19 = new Platform(3750, 250);
         this.add(platform19);
-        //tests
-        const branch = new Branch(500, 400);
-        this.add(branch);
 
         if (this.pages === 0) {
             const newspaper = new Newspaper(160, 135);

@@ -15,6 +15,8 @@ import { Newspaper } from "./class/Newspaper";
 import { Platform } from "./class/platfrom";
 
 export class ThunderScene extends Scene {
+    pages = 0;
+
     onActivate() {
         this.clear();
         this.startGame();
@@ -60,21 +62,6 @@ export class ThunderScene extends Scene {
         this.add(loadBarrier);
 
         //level lay-out
-        const newspaper = new Newspaper(160, 135);
-                this.add(newspaper);
-        
-                const newspaper2 = new Newspaper(2435, 600);
-                this.add(newspaper2);
-        
-                const newspaper3 = new Newspaper(2410, 85);
-                this.add(newspaper3);
-        
-                const newspaper4 = new Newspaper(3750, 210);
-                this.add(newspaper4);
-        
-                const newspaper5 = new Newspaper(1220, 80);
-                this.add(newspaper5);
-        
                 const platform0 = new Platform(150, 175);
                 this.add(platform0);
                 
@@ -135,13 +122,54 @@ export class ThunderScene extends Scene {
                 const platform19 = new Platform(3750, 250);
                 this.add(platform19);
 
-        //add player
+                //add player
         const player = new PlayerOne()
         this.add(player)
         
         //lock camera to player
         this.camera.strategy.lockToActor(player)
         this.camera.strategy.limitCameraBounds(new BoundingBox(0, 0, 3840, 720))
+
+        this.checkPages()
+
+        if (this.pages === 0) {
+            const newspaper = new Newspaper(160, 135);
+            this.add(newspaper);
+            const newspaper2 = new Newspaper(2435, 600);
+            this.add(newspaper2);
+            const newspaper3 = new Newspaper(2410, 85);
+            this.add(newspaper3);
+            const newspaper4 = new Newspaper(3750, 210);
+            this.add(newspaper4);
+            const newspaper5 = new Newspaper(1220, 80);
+            this.add(newspaper5);
+        } else if (this.pages === 1) {
+            const newspaper2 = new Newspaper(2435, 600);
+            this.add(newspaper2);
+            const newspaper3 = new Newspaper(2410, 85);
+            this.add(newspaper3);
+            const newspaper4 = new Newspaper(3750, 210);
+            this.add(newspaper4);
+            const newspaper5 = new Newspaper(1220, 80);
+            this.add(newspaper5);
+        } else if (this.pages === 2) {
+            const newspaper3 = new Newspaper(2410, 85);
+            this.add(newspaper3);
+            const newspaper4 = new Newspaper(3750, 210);
+            this.add(newspaper4);
+            const newspaper5 = new Newspaper(1220, 80);
+            this.add(newspaper5);
+        } else if (this.pages === 3) {
+            const newspaper4 = new Newspaper(3750, 210);
+            this.add(newspaper4);
+            const newspaper5 = new Newspaper(1220, 80);
+            this.add(newspaper5);
+        } else if (this.pages === 4) {
+            const newspaper5 = new Newspaper(1220, 80);
+            this.add(newspaper5);
+        }
+
+        
 
         this.thunderWeather()
     }
@@ -191,5 +219,18 @@ export class ThunderScene extends Scene {
 
         this.add(timer);
         timer.start();
+    }
+
+    checkPages() {
+        if (this.player) {
+            // Sla de pageCount van de speler op in de scene-variabele 'pages'
+            this.pages = PlayerState.pageCount
+            
+            // Log de variabele van de SCENE (this.pages) OF van de SPELER (this.player.pageCount)
+            console.log("Pagina's in scene:", this.pages); 
+            // OF: console.log("Pagina's van player:", this.player.pageCount);
+        } else {
+            console.log("Speler is nog niet aangemaakt!");
+        }
     }
 }
