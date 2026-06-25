@@ -43,7 +43,7 @@ export class Player extends Actor {
 
     onPreUpdate(engine, delta) {
 
-        if (engine.input.keyboard.wasPressed(Keys.ArrowUp) && this.onTheGround || engine.input.keyboard.wasPressed(Keys.W && this.onTheGround)) {
+        if (engine.input.keyboard.wasPressed(Keys.ArrowUp) && this.onTheGround || engine.input.keyboard.wasPressed(Keys.W) && this.onTheGround) {
             this.body.applyLinearImpulse(new Vector(0, -3500));
         }
 
