@@ -28,14 +28,14 @@ export class PlayerOne extends Player {
 
     onPreUpdate(engine, delta) {
 
-        if (engine.input.keyboard.wasPressed(Keys.ArrowUp) && this.onTheGround) {
+        if (engine.input.keyboard.wasPressed(Keys.ArrowUp) && this.onTheGround || engine.input.keyboard.wasPressed(Keys.W) && this.onTheGround) {
             this.body.applyLinearImpulse(new Vector(0, -350 * delta));
         }
 
-        if (engine.input.keyboard.isHeld(Keys.ArrowRight)) {
+        if (engine.input.keyboard.isHeld(Keys.ArrowRight) || engine.input.keyboard.isHeld(Keys.D)) {
             this.vel = new Vector(200, this.vel.y)
         }
-        else if (engine.input.keyboard.isHeld(Keys.ArrowLeft)) {
+        else if (engine.input.keyboard.isHeld(Keys.ArrowLeft) || engine.input.keyboard.isHeld(Keys.A)) {
             this.vel = new Vector(-200, this.vel.y)
         }
         else {
