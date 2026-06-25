@@ -12,27 +12,38 @@ import { Branch } from './class/branch.js';
 import { Newspaper } from './class/Newspaper.js';
 import { HealthBar } from './class/HealthBar.js';
 import { Platform } from './class/platfrom.js';
+import { PlayerState } from './class/playerstate.js';
+import { Sound } from 'excalibur';
 
 export class FirstScene extends Scene {
+    player;
+    pages = 0;
 
-    onActivate() {
+    onActivate(engine) {
         this.clear();
 
         this.HealthBar = new HealthBar();
         this.add(this.HealthBar);
-        
+
         this.startGame();
+
+        Resources.FirstScene.loop = true;
+        Resources.FirstScene.play();
     }
-    
+    onDeactivate() {
+        Resources.FirstScene.stop();
+    }
 
     startGame() {
         //add player
-        const player = new PlayerOne()
-        this.add(player)
+        this.player = new PlayerOne()
+        this.add(this.player)
         
         //lock camera to player
-        this.camera.strategy.lockToActor(player)
+        this.camera.strategy.lockToActor(this.player)
         this.camera.strategy.limitCameraBounds(new BoundingBox(0, 0, 3840, 720))
+
+        this.checkPages()
 
         const loadBarrier = new Barrier();
         this.add(loadBarrier);
@@ -62,21 +73,6 @@ export class FirstScene extends Scene {
         const loadGround3 = new Ground();
         loadGround3.pos = new Vector(3200, 670);
         this.add(loadGround3);
-
-        const newspaper = new Newspaper(160, 135);
-        this.add(newspaper);
-
-        const newspaper2 = new Newspaper(2435, 600);
-        this.add(newspaper2);
-
-        const newspaper3 = new Newspaper(2410, 85);
-        this.add(newspaper3);
-
-        const newspaper4 = new Newspaper(3750, 210);
-        this.add(newspaper4);
-
-        const newspaper5 = new Newspaper(1220, 80);
-        this.add(newspaper5);
 
         const platform0 = new Platform(150, 175);
         this.add(platform0);
@@ -137,5 +133,67 @@ export class FirstScene extends Scene {
 
         const platform19 = new Platform(3750, 250);
         this.add(platform19);
+        //tests
+        const branch = new Branch(500, 400);
+        this.add(branch);
+
+        if (this.pages === 0) {
+            const newspaper = new Newspaper(160, 135);
+            this.add(newspaper);
+            const newspaper2 = new Newspaper(2435, 600);
+            this.add(newspaper2);
+            const newspaper3 = new Newspaper(2410, 85);
+            this.add(newspaper3);
+            const newspaper4 = new Newspaper(3750, 210);
+            this.add(newspaper4);
+            const newspaper5 = new Newspaper(1220, 80);
+            this.add(newspaper5);
+        } else if (this.pages === 1) {
+            const newspaper2 = new Newspaper(2435, 600);
+            this.add(newspaper2);
+            const newspaper3 = new Newspaper(2410, 85);
+            this.add(newspaper3);
+            const newspaper4 = new Newspaper(3750, 210);
+            this.add(newspaper4);
+            const newspaper5 = new Newspaper(1220, 80);
+            this.add(newspaper5);
+        } else if (this.pages === 2) {
+            const newspaper3 = new Newspaper(2410, 85);
+            this.add(newspaper3);
+            const newspaper4 = new Newspaper(3750, 210);
+            this.add(newspaper4);
+            const newspaper5 = new Newspaper(1220, 80);
+            this.add(newspaper5);
+        } else if (this.pages === 3) {
+            const newspaper4 = new Newspaper(3750, 210);
+            this.add(newspaper4);
+            const newspaper5 = new Newspaper(1220, 80);
+            this.add(newspaper5);
+        } else if (this.pages === 4) {
+            const newspaper5 = new Newspaper(1220, 80);
+            this.add(newspaper5);
+        }
+
+        
+
+        
+
+        
+
+        
+    }
+
+    checkPages() {
+    if (this.player) {
+        // Sla de pageCount van de speler op in de scene-variabele 'pages'
+        this.pages = PlayerState.pageCount
+        
+        // Log de variabele van de SCENE (this.pages) OF van de SPELER (this.player.pageCount)
+        console.log("Pagina's in scene:", this.pages); 
+        // OF: console.log("Pagina's van player:", this.player.pageCount);
+    } else {
+        console.log("Speler is nog niet aangemaakt!");
     }
 }
+}
+

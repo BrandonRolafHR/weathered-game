@@ -16,6 +16,8 @@ export class Lightning extends Actor {
 
         const sprite = Resources.Lightning.toSprite();
 
+        Resources.LightningSound.play();
+
         if (Math.random() < 0.5) {
             sprite.flipHorizontal = true;
         }
@@ -35,11 +37,11 @@ export class Lightning extends Actor {
     }
 
     startThunder() {
-        
+
     }
 
     lightningStrike() {
-        
+
     }
 
 }

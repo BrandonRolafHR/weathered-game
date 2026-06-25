@@ -5,7 +5,9 @@ import {
     CollisionType,
     Color,
     Rectangle,
-    BoundingBox
+    BoundingBox,
+    Sound,
+    Resource
 } from 'excalibur';
 
 import { Resources } from './resources.js';
@@ -72,7 +74,7 @@ class WindParticle extends Actor {
         this.pos.y += 80 * seconds;
 
         if (this.pos.x < -300) {
-            this.pos.x = engine.drawWidth + 300;
+            this.pos.x = 3840 + 300;
             this.pos.y = Math.random() * engine.drawHeight;
         }
 
@@ -87,8 +89,8 @@ class FlyingDebris extends Actor {
         super({
             x,
             y,
-            width: 16,
-            height: 8,
+            width: 35,
+            height: 35,
             collisionType: CollisionType.PreventCollision
         });
 
@@ -124,8 +126,8 @@ class FlyingDamageObject extends Actor {
         super({
             x,
             y,
-            width: 40,
-            height: 40,
+            width: 30,
+            height: 30,
             collisionType: CollisionType.Active
         });
 
@@ -164,6 +166,10 @@ class FlyingDamageObject extends Actor {
 
 export class HurricaneScene extends Scene {
     onActivate() {
+
+        Resources.HurricaneScene.loop = true;
+        Resources.HurricaneScene.play();
+
         this.clear();
         this.startGame();
 
@@ -173,6 +179,8 @@ export class HurricaneScene extends Scene {
 
     onDeactivate() {
         clearInterval(this.objectSpawnInterval);
+
+        Resources.HurricaneScene.stop();
     }
 
     startGame() {
@@ -180,29 +188,29 @@ export class HurricaneScene extends Scene {
         // this.add(new HurricanePlatform());
 
         const loadBackground1 = new HurricaneBackground();
-                loadBackground1.pos = new Vector(0, 0)
-                this.add(loadBackground1);
-        
-                const loadBackground2 = new HurricaneBackground();
-                loadBackground2.pos = new Vector(1280, 0)
-                this.add(loadBackground2);
-        
-                const loadBackground3 = new HurricaneBackground();
-                loadBackground3.pos = new Vector(2560, 0)
-                this.add(loadBackground3);
-        
-                //load grounds
-                const loadGround1 = new HurricanePlatform();
-                loadGround1.pos = new Vector(640, 670)
-                this.add(loadGround1);
-        
-                const loadGround2 = new HurricanePlatform();
-                loadGround2.pos = new Vector(1920, 670)
-                this.add(loadGround2);
-        
-                const loadGround3 = new HurricanePlatform();
-                loadGround3.pos = new Vector(3200, 670);
-                this.add(loadGround3);
+        loadBackground1.pos = new Vector(0, 0)
+        this.add(loadBackground1);
+
+        const loadBackground2 = new HurricaneBackground();
+        loadBackground2.pos = new Vector(1280, 0)
+        this.add(loadBackground2);
+
+        const loadBackground3 = new HurricaneBackground();
+        loadBackground3.pos = new Vector(2560, 0)
+        this.add(loadBackground3);
+
+        //load grounds
+        const loadGround1 = new HurricanePlatform();
+        loadGround1.pos = new Vector(640, 670)
+        this.add(loadGround1);
+
+        const loadGround2 = new HurricanePlatform();
+        loadGround2.pos = new Vector(1920, 670)
+        this.add(loadGround2);
+
+        const loadGround3 = new HurricanePlatform();
+        loadGround3.pos = new Vector(3200, 670);
+        this.add(loadGround3);
 
         this.add(new Barrier());
 
@@ -285,7 +293,7 @@ export class HurricaneScene extends Scene {
         //add player
         const player = new PlayerOne()
         this.add(player)
-        
+
         //lock camera to player
         this.camera.strategy.lockToActor(player)
         this.camera.strategy.limitCameraBounds(new BoundingBox(0, 0, 3840, 720))
@@ -314,7 +322,7 @@ export class HurricaneScene extends Scene {
         for (let i = 0; i < 120; i++) {
             this.add(
                 new WindParticle(
-                    Math.random() * 1280,
+                    Math.random() * 3840,
                     Math.random() * 720
                 )
             );
@@ -325,7 +333,7 @@ export class HurricaneScene extends Scene {
         for (let i = 0; i < 30; i++) {
             this.add(
                 new FlyingDebris(
-                    Math.random() * 1280,
+                    Math.random() * 3840,
                     Math.random() * 720
                 )
             );
@@ -354,7 +362,7 @@ export class HurricaneScene extends Scene {
         const chosen = objects[Math.floor(Math.random() * objects.length)];
 
         const object = new FlyingDamageObject(
-            1380,
+            3840,
             150 + Math.random() * 450,
             chosen.sprite,
             chosen.damage,

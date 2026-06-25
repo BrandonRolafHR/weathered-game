@@ -1,4 +1,4 @@
-import { BoundingBox, Scene, Vector } from "excalibur";
+import { BoundingBox, Scene, Vector,Sound } from "excalibur";
 import { Barrier } from "./class/barrier";
 import { Background } from "./class/background";
 import { PlayerOne } from "./class/playerone";
@@ -7,10 +7,20 @@ import { Water } from "./class/water";
 import { HealthBar } from "./class/HealthBar";
 import { Newspaper } from "./class/Newspaper";
 import { Platform } from "./class/platfrom";
+import { Resources } from "./resources";
 
 export class waterScene extends Scene {
     constructor() {
         super()
+        
+    }
+
+    onActivate() {
+        Resources.WaterScene.loop = true;
+        Resources.WaterScene.play();
+    }
+    onDeactivate() {
+        Resources.WaterScene.stop();
     }
 
     onInitialize() {
@@ -28,36 +38,36 @@ export class waterScene extends Scene {
         //lock camera to player
         this.camera.strategy.lockToActor(player)
         this.camera.strategy.limitCameraBounds(new BoundingBox(0, 0, 3840, 720))
-        
+
         //add basics
         const loadBarrier = new Barrier();
         this.add(loadBarrier);
 
         //load backgrounds
-                const loadBackground1 = new Background();
-                loadBackground1.pos = new Vector(0, 0)
-                this.add(loadBackground1);
-        
-                const loadBackground2 = new Background();
-                loadBackground2.pos = new Vector(1280, 0)
-                this.add(loadBackground2);
-        
-                const loadBackground3 = new Background();
-                loadBackground3.pos = new Vector(2560, 0)
-                this.add(loadBackground3);
-        
-                //load grounds
-                const loadGround1 = new Ground();
-                loadGround1.pos = new Vector(640, 670)
-                this.add(loadGround1);
-        
-                const loadGround2 = new Ground();
-                loadGround2.pos = new Vector(1920, 670)
-                this.add(loadGround2);
-        
-                const loadGround3 = new Ground();
-                loadGround3.pos = new Vector(3200, 670);
-                this.add(loadGround3);
+        const loadBackground1 = new Background();
+        loadBackground1.pos = new Vector(0, 0)
+        this.add(loadBackground1);
+
+        const loadBackground2 = new Background();
+        loadBackground2.pos = new Vector(1280, 0)
+        this.add(loadBackground2);
+
+        const loadBackground3 = new Background();
+        loadBackground3.pos = new Vector(2560, 0)
+        this.add(loadBackground3);
+
+        //load grounds
+        const loadGround1 = new Ground();
+        loadGround1.pos = new Vector(640, 670)
+        this.add(loadGround1);
+
+        const loadGround2 = new Ground();
+        loadGround2.pos = new Vector(1920, 670)
+        this.add(loadGround2);
+
+        const loadGround3 = new Ground();
+        loadGround3.pos = new Vector(3200, 670);
+        this.add(loadGround3);
 
         //level lay-out
         const newspaper = new Newspaper(160, 135);

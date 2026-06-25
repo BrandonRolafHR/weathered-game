@@ -17,7 +17,7 @@ export class Water extends Actor {
     onInitialize(engine) {
         //info for Actor
         this.graphics.use(Resources.Water.toSprite())
-        this.vel = new Vector(100, 10)
+        this.vel = new Vector(300, 50)
 
         //pos for two diffirent
         if(this.number === 1) {
