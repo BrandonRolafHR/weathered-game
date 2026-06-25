@@ -5,7 +5,9 @@ import {
     CollisionType,
     Color,
     Rectangle,
-    BoundingBox
+    BoundingBox,
+    Sound,
+    Resource
 } from 'excalibur';
 
 import { Resources } from './resources.js';
@@ -162,6 +164,10 @@ class FlyingDamageObject extends Actor {
 
 export class HurricaneScene extends Scene {
     onActivate() {
+
+        Resources.HurricaneScene.loop = true;
+        Resources.HurricaneScene.play();
+
         this.clear();
         this.startGame();
 
@@ -171,6 +177,8 @@ export class HurricaneScene extends Scene {
 
     onDeactivate() {
         clearInterval(this.objectSpawnInterval);
+
+        Resources.HurricaneScene.stop();
     }
 
     startGame() {
@@ -178,36 +186,36 @@ export class HurricaneScene extends Scene {
         // this.add(new HurricanePlatform());
 
         const loadBackground1 = new HurricaneBackground();
-                loadBackground1.pos = new Vector(0, 0)
-                this.add(loadBackground1);
-        
-                const loadBackground2 = new HurricaneBackground();
-                loadBackground2.pos = new Vector(1280, 0)
-                this.add(loadBackground2);
-        
-                const loadBackground3 = new HurricaneBackground();
-                loadBackground3.pos = new Vector(2560, 0)
-                this.add(loadBackground3);
-        
-                //load grounds
-                const loadGround1 = new HurricanePlatform();
-                loadGround1.pos = new Vector(640, 670)
-                this.add(loadGround1);
-        
-                const loadGround2 = new HurricanePlatform();
-                loadGround2.pos = new Vector(1920, 670)
-                this.add(loadGround2);
-        
-                const loadGround3 = new HurricanePlatform();
-                loadGround3.pos = new Vector(3200, 670);
-                this.add(loadGround3);
+        loadBackground1.pos = new Vector(0, 0)
+        this.add(loadBackground1);
+
+        const loadBackground2 = new HurricaneBackground();
+        loadBackground2.pos = new Vector(1280, 0)
+        this.add(loadBackground2);
+
+        const loadBackground3 = new HurricaneBackground();
+        loadBackground3.pos = new Vector(2560, 0)
+        this.add(loadBackground3);
+
+        //load grounds
+        const loadGround1 = new HurricanePlatform();
+        loadGround1.pos = new Vector(640, 670)
+        this.add(loadGround1);
+
+        const loadGround2 = new HurricanePlatform();
+        loadGround2.pos = new Vector(1920, 670)
+        this.add(loadGround2);
+
+        const loadGround3 = new HurricanePlatform();
+        loadGround3.pos = new Vector(3200, 670);
+        this.add(loadGround3);
 
         this.add(new Barrier());
 
         //add player
         const player = new PlayerOne()
         this.add(player)
-        
+
         //lock camera to player
         this.camera.strategy.lockToActor(player)
         this.camera.strategy.limitCameraBounds(new BoundingBox(0, 0, 3840, 720))

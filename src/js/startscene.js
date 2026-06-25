@@ -5,9 +5,8 @@ import { Resources } from './resources.js';
 export class StartScene extends Scene {
   async onActivate() {
 
-    let soundOn = true;
-
     document.getElementById('scene').style.display = 'block';
+    let soundOn = true;
 
     Resources.StartScene.loop = true;
     Resources.StartScene.play();
@@ -21,7 +20,6 @@ export class StartScene extends Scene {
     Resources.StartScene.stop();
   }
 }
-
 // Start the game
 document.getElementById('btn-start').addEventListener('click', () => {
   document.dispatchEvent(new CustomEvent('start-game'));
