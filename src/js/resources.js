@@ -1,5 +1,6 @@
 import { ImageSource, Sound, Resource, Loader, ImageWrapping } from 'excalibur'
 import { Branch } from './class/branch'
+import { Platform } from './class/platfrom'
 
 const Resources = {
     PlayerOne: new ImageSource('images/bassie.png'),
@@ -7,6 +8,7 @@ const Resources = {
     Dead: new ImageSource('images/bassieDood.png'),
     Background: new ImageSource('images/standard-denver.png'),
     Ground: new ImageSource('images/standard-platform.png'),
+    Platform: new ImageSource('images/small-platfrom.png'),
     Branch: new ImageSource('images/branch.png'),
     NewsPaper: new ImageSource('images/NewsPaper.png'),
     Branch: new ImageSource('images/branch.png'),

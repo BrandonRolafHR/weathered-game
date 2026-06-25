@@ -6,6 +6,7 @@ import { DeathScene } from "../deathscene.js";
 import { Barrier } from "./barrier.js";
 import { Newspaper } from "./Newspaper.js";
 import { LevelSwitcher } from "../levelswitcher.js";
+import { Platform } from "./platfrom.js";
 
 export class Player extends Actor {
 
@@ -17,8 +18,8 @@ export class Player extends Actor {
         super({
             x: x,
             y: y,
-            width: 900,
-            height: 750,
+            width: 600,
+            height: 980,
         })
         this.health = PlayerState.health ?? 3;
     }
@@ -60,7 +61,7 @@ export class Player extends Actor {
     }
 
     onCollisionStart(event, other, engine) {
-        if (other.owner instanceof Barrier) {
+        if (other.owner instanceof Barrier || other.owner instanceof Platform) {
             this.onTheGround = true;
         }
         if (other.owner instanceof Newspaper) {
@@ -108,7 +109,7 @@ export class Player extends Actor {
     }
 
     onCollisionEnd(event, other) {
-        if (other.owner instanceof Barrier) {
+        if (other.owner instanceof Barrier || other.owner instanceof Platform) {
             this.onTheGround = false;
         }
     }
