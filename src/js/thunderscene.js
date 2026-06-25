@@ -63,7 +63,7 @@ export class ThunderScene extends Scene {
     }
 
     thunderWeather() {
-        const nextStrike = Math.random() * 6000 + 1000;
+        const nextStrike = Math.random() * 2000 + 1000;
 
         const timer = new Timer({
             interval: nextStrike,
@@ -82,7 +82,7 @@ export class ThunderScene extends Scene {
 
     thunderStrike() {
 
-        const randomX = Math.random() * this.engine.drawWidth;
+        const randomX = Math.random() * 3840;
 
         const incomingLightning = new IncomingLightning(
             randomX,
