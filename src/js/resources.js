@@ -6,6 +6,7 @@ import { Lightning } from './class/lightning'
 import { ThunderScene } from './thunderscene'
 import { waterScene } from './waterscene'
 import { HurricaneScene } from './hurricanescene'
+import { DeathScene } from './deathscene'
 
 const Resources = {
     //#region Images
@@ -41,7 +42,8 @@ const Resources = {
     ThunderScene: new Sound("/sounds/thunderstorm.mp3"),
     LightningSound: new Sound("/sounds/thunderclap.mp3"),
     WaterScene: new Sound("/sounds/water.mp3"),
-    HurricaneScene: new Sound ("/sounds/hurricane.mp3")
+    HurricaneScene: new Sound ("/sounds/hurricane.mp3"),
+    DeathScene: new Sound ("/sounds/losing.mp3")
     
     //#endregion
 }
