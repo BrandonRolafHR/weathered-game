@@ -1,13 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/x-icon" href="./favicon.ico">
-    <title>Excalibur</title>
-    <script type="module" crossorigin src="./assets/index-BkTruygK.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-DuJbVAg9.css">
-  </head>
-  <body>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="./favicon.ico">
+
+
+  <title>Weathered</title>
+  <script type="module" crossorigin src="./assets/index-DcZLdhmb.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-Yb1wcRuE.css">
+</head>
+
+<body>
+
+  <div id="video-overlay">
+    <video id="video"></video>
+  </div>
+
+  <div id="scene">
+    <canvas id="bg"></canvas>
+
+    <div id="ui">
+      <div class="btn-wrap" id="btnwrap">
+
+        <button class="menu-btn" id="btn-start">
+          <div class="btn-inner">
+            <span class="btn-arrow">▶</span>
+            <span>Start</span>
+          </div>
+        </button>
+
+        <div class="btn-divider"></div>
+
+        <button class="menu-btn" id="btn-options">
+          <div class="btn-inner">
+            <span class="btn-arrow">▶</span>
+            <span>Options</span>
+          </div>
+        </button>
+
+        <div class="btn-divider"></div>
+
+        <button class="menu-btn" id="btn-quit">
+          <div class="btn-inner">
+            <span class="btn-arrow">▶</span>
+            <span>Quit</span>
+          </div>
+        </button>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Options menu -->
+  <div id="options-panel" class="hidden">
+    <div class="options-box">
+
+      <h2>Options</h2>
+
+      <button id="btn-fullscreen" class="option-btn">
+        Fullscreen
+      </button>
+
+      <button id="btn-sound" class="option-btn">
+        Sound: ON
+      </button>
+
+      <button id="btn-back" class="option-btn">
+        Back
+      </button>
+
+    </div>
+  </div>
+
+
+</body>
 </html>
