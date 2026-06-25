@@ -3,5 +3,6 @@ export const PlayerState = {
   y: 600,
   health: 3,
   maxHealth: 3,
-  isSwitchingScene: false
+  isSwitchingScene: false,
+  pageCount: 0
 };
