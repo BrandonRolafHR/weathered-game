@@ -2,7 +2,7 @@ import { fadeToScene } from './class/fade.js';
 import { Player } from './class/player.js';
 
 export class LevelSwitcher {
-  constructor(engine, sceneNames, switchTime = 60000) {
+  constructor(engine, sceneNames, switchTime = 22000) {
     this.engine = engine;
     this.sceneNames = sceneNames;
     this.switchTime = switchTime;
