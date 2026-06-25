@@ -37,6 +37,10 @@ export class Player extends Actor {
         this.health = PlayerState.health;
     }
 
+    onActivate() {
+        this.pageCount = PlayerState.pageCount
+    }
+
     onPreUpdate(engine, delta) {
 
         if (engine.input.keyboard.wasPressed(Keys.ArrowUp) && this.onTheGround) {
