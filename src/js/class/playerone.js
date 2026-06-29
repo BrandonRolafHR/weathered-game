@@ -12,8 +12,11 @@ import { LevelSwitcher } from "../levelswitcher.js";
 
 export class PlayerOne extends Player {
 
+    facingRight = true;
+
     onInitialize(engine) {
         super.onInitialize(engine)
+<<<<<<< Updated upstream
 
         this.playerone = Resources.PlayerOne.toSprite();
 
@@ -31,23 +34,63 @@ export class PlayerOne extends Player {
 
         if (engine.input.keyboard.wasPressed(Keys.ArrowUp) && this.onTheGround || engine.input.keyboard.wasPressed(Keys.W) && this.onTheGround) {
             this.body.applyLinearImpulse(new Vector(0, -350 * delta));
+=======
+        this.pos = new Vector(PlayerState.x, 500);
+    }
+
+    onPreUpdate(engine, delta) {
+        if (engine.input.keyboard.wasPressed(Keys.ArrowUp) && this.onTheGround) {
+            this.body.applyLinearImpulse(new Vector(0, -5000));
+            this.onTheGround = false;
+            if (this.jump) {
+                const j = this.jump.clone();
+                j.flipHorizontal = this.facingRight;
+                this.graphics.use(j);
+            }
+>>>>>>> Stashed changes
         }
 
         if (engine.input.keyboard.isHeld(Keys.ArrowRight) || engine.input.keyboard.isHeld(Keys.D)) {
             this.vel = new Vector(200, this.vel.y)
+            this.facingRight = true;
         }
         else if (engine.input.keyboard.isHeld(Keys.ArrowLeft) || engine.input.keyboard.isHeld(Keys.A)) {
             this.vel = new Vector(-200, this.vel.y)
+            this.facingRight = false;
         }
         else {
-            // this.vel = new Vector(0, this.vel.y)
-            this.vel = new Vector(this.vel.x * 0.9, this.vel.y)
+            this.vel = new Vector(0, this.vel.y)
+        }
+
+        if (this.onTheGround) {
+            if (this.vel.x !== 0) {
+                if (this.sprint) {
+                    // use the instance animation directly (was working previously)
+                    this.sprint.flipHorizontal = !this.facingRight;
+                    this.graphics.use(this.sprint);
+                }
+            } else if (this.playerone) {
+                const p = this.playerone.clone();
+                p.flipHorizontal = !this.facingRight;
+                this.graphics.use(p);
+            }
+        } else if (this.jump) {
+            const j2 = this.jump.clone();
+            j2.flipHorizontal = this.facingRight;
+            this.graphics.use(j2);
+        }
+
+        //video afspelen
+        if (this.pageCount === 5) {
+            this.onFinnish()
         }
     }
+
 
     onCollisionStart(event, other) {
         if (other.owner instanceof Barrier || other.owner instanceof Platform) {
             this.onTheGround = true;
+            this.graphics.use(this.playerone);
         }
 
         if (other.owner instanceof Newspaper) {
@@ -69,5 +112,4 @@ export class PlayerOne extends Player {
             this.onTheGround = false;
         }
     }
-
 }
