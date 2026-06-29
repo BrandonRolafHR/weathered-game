@@ -1,4 +1,4 @@
-import { Actor, Sound, Sprite, Vector, Keys, CollisionType, DegreeOfFreedom, SolverStrategy, EngineEvents, Engine } from "excalibur"
+import { Actor, Vector, Keys, CollisionType, DegreeOfFreedom, SolverStrategy, EngineEvents, Engine, Shape, SpriteSheet, Animation, AnimationStrategy } from "excalibur"
 import { Resources } from '../resources.js';
 import { PlayerState } from './playerstate.js';
 import { Water } from "./water.js";
@@ -13,6 +13,7 @@ export class Player extends Actor {
     videoOverlay = document.getElementById('video-overlay')
     videoPlayer = document.getElementById('video')
     pageCount = 0;
+    #isJumping = false;
 
     constructor(x, y) {
         super({
@@ -23,19 +24,44 @@ export class Player extends Actor {
         })
         this.health = PlayerState.health ?? 3;
     }
-
     onInitialize(engine) {
         this.playerone = Resources.PlayerOne.toSprite();
+        this.jump = Resources.Jump.toSprite();
+
+        const sprintSpriteSheet = SpriteSheet.fromImageSource({
+            image: Resources.Sprint,
+            grid: {
+                rows: 1,
+                columns: 8,
+                spriteWidth: 190,
+                spriteHeight: 1024,
+            }
+        });
+        
+
+        this.sprint = Animation.fromSpriteSheet(
+            sprintSpriteSheet,
+            Array.from({ length: 16 }, (_, i) => i),
+            80,
+            AnimationStrategy.Loop
+        );
+
+        this.sprint.play();
+
+        
+        this.sprint.scale = new Vector(3.5, 3.5);
+
 
         this.graphics.use(this.playerone);
 
-        this.pos = new Vector(150, 660);
+        this.pos = new Vector(150, 500);
         this.scale = new Vector(0.09, 0.09);
         this.body.useGravity = true;
         this.body.collisionType = CollisionType.Active;
         this.body.limitDegreeOfFreedom.push(DegreeOfFreedom.Rotation);
         this.pos = new Vector(PlayerState.x, PlayerState.y);
         this.health = PlayerState.health;
+        this.onTheGround = true;
     }
 
     onActivate() {
@@ -64,9 +90,13 @@ export class Player extends Actor {
             }
     }
 
+    
     onCollisionStart(event, other, engine) {
         if (other.owner instanceof Barrier || other.owner instanceof Platform) {
             this.onTheGround = true;
+            if (this.playerone) {
+                this.graphics.use(this.playerone);
+            }
         }
         if (other.owner instanceof Newspaper) {
             console.log('Player collided with the newspaper');
