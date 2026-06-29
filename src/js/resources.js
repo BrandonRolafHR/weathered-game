@@ -45,7 +45,10 @@ const Resources = {
     LightningSound: new Sound("/sounds/thunderclap.mp3"),
     WaterScene: new Sound("/sounds/water.mp3"),
     HurricaneScene: new Sound ("/sounds/hurricane.mp3"),
-    DeathScene: new Sound ("/sounds/losing.mp3")
+    DeathScene: new Sound ("/sounds/losing.mp3"),
+    Pickup: new Sound ("/sounds/pickup.mp3"),
+    Jump: new Sound ("/sounds/jump.mp3")
+
     
     //#endregion
 }

@@ -1,4 +1,4 @@
-import { Actor, Sprite, Vector, Keys, CollisionType, DegreeOfFreedom, SolverStrategy, EngineEvents, Engine } from "excalibur"
+import { Actor, Sound, Sprite, Vector, Keys, CollisionType, DegreeOfFreedom, SolverStrategy, EngineEvents, Engine } from "excalibur"
 import { Resources } from '../resources.js';
 import { PlayerState } from './playerstate.js';
 import { Water } from "./water.js";
@@ -72,10 +72,6 @@ export class Player extends Actor {
             console.log('Player collided with the newspaper');
             this.pageCount++;
             other.owner.showPage(this.pageCount);
-
-            
-
-            
         }
         
     }
