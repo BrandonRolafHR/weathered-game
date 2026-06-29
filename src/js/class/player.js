@@ -102,10 +102,6 @@ export class Player extends Actor {
             console.log('Player collided with the newspaper');
             this.pageCount++;
             other.owner.showPage(this.pageCount);
-
-            
-
-            
         }
         
     }

@@ -30,9 +30,10 @@ export class PlayerOne extends Player {
     }
 
     onPreUpdate(engine, delta) {
-        if (engine.input.keyboard.wasPressed(Keys.ArrowUp) && this.onTheGround) {
+        if (engine.input.keyboard.wasPressed(Keys.ArrowUp) || engine.input.keyboard.wasPressed(Keys.W) && this.onTheGround) {
             this.body.applyLinearImpulse(new Vector(0, -5000));
             this.onTheGround = false;
+            Resources.Jump.play();
             if (this.jump) {
                 const j = this.jump.clone();
                 j.flipHorizontal = this.facingRight;
@@ -83,6 +84,8 @@ export class PlayerOne extends Player {
         }
 
         if (other.owner instanceof Newspaper) {
+            Resources.Pickup.play();
+            
             console.log('Player collided with the newspaper');
             PlayerState.pageCount++;
             other.owner.showPage(PlayerState.pageCount);
