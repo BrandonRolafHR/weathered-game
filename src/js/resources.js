@@ -49,7 +49,7 @@ const Resources = {
     HurricaneScene: new Sound ("/sounds/hurricane.mp3"),
     DeathScene: new Sound ("/sounds/losing.mp3"),
     Pickup: new Sound ("/sounds/pickup.mp3"),
-    Jump: new Sound ("/sounds/jump.mp3")
+    JumpSound: new Sound ("/sounds/jump.mp3")
 
     
     //#endregion

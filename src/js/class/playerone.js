@@ -33,7 +33,7 @@ export class PlayerOne extends Player {
         if (engine.input.keyboard.wasPressed(Keys.ArrowUp) || engine.input.keyboard.wasPressed(Keys.W) && this.onTheGround) {
             this.body.applyLinearImpulse(new Vector(0, -5000));
             this.onTheGround = false;
-            Resources.Jump.play();
+            Resources.JumpSound.play();
             if (this.jump) {
                 const j = this.jump.clone();
                 j.flipHorizontal = this.facingRight;
