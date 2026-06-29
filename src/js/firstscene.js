@@ -64,17 +64,6 @@ export class FirstScene extends Scene {
         loadBackground3.pos = new Vector(2560, 0)
         this.add(loadBackground3);
 
-        //add player
-        const player = new PlayerOne()
-        this.add(player)
-        
-        //lock camera to player
-        this.camera.strategy.lockToActor(player)
-        this.camera.strategy.limitCameraBounds(new BoundingBox(0, 0, 3840, 720))
-
-        const branch = new Branch(500, 400);
-        this.add(branch);
-
         //load grounds
         const loadGround1 = new Ground();
         loadGround1.pos = new Vector(640, 670)

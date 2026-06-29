@@ -25,6 +25,9 @@ export class Player extends Actor {
         this.health = PlayerState.health ?? 3;
     }
     onInitialize(engine) {
+        this.isDamaged = false;
+        this.isDead = false;
+
         this.playerone = Resources.PlayerOne.toSprite();
         this.jump = Resources.Jump.toSprite();
 
@@ -37,7 +40,7 @@ export class Player extends Actor {
                 spriteHeight: 1024,
             }
         });
-        
+
 
         this.sprint = Animation.fromSpriteSheet(
             sprintSpriteSheet,
@@ -48,7 +51,7 @@ export class Player extends Actor {
 
         this.sprint.play();
 
-        
+
         this.sprint.scale = new Vector(3.5, 3.5);
 
 
@@ -85,12 +88,12 @@ export class Player extends Actor {
         }
 
         //video afspelen
-            if (this.pageCount === 5) {
-                this.onFinnish()
-            }
+        if (this.pageCount === 5) {
+            this.onFinnish()
+        }
     }
 
-    
+
     onCollisionStart(event, other, engine) {
         if (other.owner instanceof Barrier || other.owner instanceof Platform) {
             this.onTheGround = true;
@@ -103,40 +106,44 @@ export class Player extends Actor {
             this.pageCount++;
             other.owner.showPage(this.pageCount);
         }
-        
+
     }
 
-    takeDamage(engine) {
-        if(PlayerState.isSwitchingScene) return;
+    takeDamage() {
+    if (PlayerState.isSwitchingScene) return;
+    if (this.isDamaged || this.isDead) return;
 
-        this.health--;
+    this.health--;
+    PlayerState.health = this.health;
 
-        PlayerState.health = this.health;
-
-        const healthBar = this.scene.HealthBar;
+    const healthBar = this.scene.HealthBar;
+    if (healthBar) {
         healthBar.setHealth(this.health);
-
-        this.graphics.use(Resources.Damaged.toSprite());
-
-        if(this.health > 0){
-            setTimeout(() => {
-                this.graphics.use(Resources.PlayerOne.toSprite());
-            }, 300);
-        }
-
-        if (this.health <= 0) {
-            this.graphics.use(Resources.Dead.toSprite());
-            setTimeout(() => {
-            this.kill()
-
-            //naar de deathscreen
-            this.scene.engine.levelSwitcher.stop()
-            this.scene.clear()
-            this.scene.engine.add('deathscene', new DeathScene)
-            this.scene.engine.goToScene('deathscene')
-        }, 3000);
-        }
     }
+
+    if (this.health <= 0) {
+        this.isDead = true;
+        this.graphics.use(Resources.Dead.toSprite());
+
+        setTimeout(() => {
+            this.kill();
+
+            this.scene.engine.levelSwitcher.stop();
+            this.scene.clear();
+            this.scene.engine.add('deathscene', new DeathScene());
+            this.scene.engine.goToScene('deathscene');
+        }, 3000);
+
+        return;
+    }
+
+    this.isDamaged = true;
+    this.graphics.use(Resources.Damaged.toSprite());
+
+    setTimeout(() => {
+        this.isDamaged = false;
+    }, 500);
+}
 
     onCollisionEnd(event, other) {
         if (other.owner instanceof Barrier || other.owner instanceof Platform) {

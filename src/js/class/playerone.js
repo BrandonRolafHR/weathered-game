@@ -17,6 +17,11 @@ export class PlayerOne extends Player {
     onInitialize(engine) {
         super.onInitialize(engine)
 
+        this.pos = new Vector(
+            Math.min(Math.max(PlayerState.x ?? 150, 150), 1150),
+            Math.min(Math.max(PlayerState.y ?? 600, 100), 650)
+        );
+
         this.playerone = Resources.PlayerOne.toSprite();
 
         this.graphics.use(this.playerone);
@@ -30,8 +35,12 @@ export class PlayerOne extends Player {
     }
 
     onPreUpdate(engine, delta) {
-        if (engine.input.keyboard.wasPressed(Keys.ArrowUp) || engine.input.keyboard.wasPressed(Keys.W) && this.onTheGround) {
-            this.body.applyLinearImpulse(new Vector(0, -5000));
+
+        if (this.isDamaged || this.isDead)
+            return;
+
+        if (engine.input.keyboard.wasPressed(Keys.ArrowUp) && this.onTheGround || engine.input.keyboard.wasPressed(Keys.W) && this.onTheGround) {
+            this.body.applyLinearImpulse(new Vector(0, -6000));
             this.onTheGround = false;
             Resources.JumpSound.play();
             if (this.jump) {
@@ -85,12 +94,12 @@ export class PlayerOne extends Player {
 
         if (other.owner instanceof Newspaper) {
             Resources.Pickup.play();
-            
+
             console.log('Player collided with the newspaper');
             PlayerState.pageCount++;
             other.owner.showPage(PlayerState.pageCount);
             this.scene.engine.levelSwitcher.stop()
-            
+
         }
 
         if (other.owner instanceof Lightning || other.owner instanceof Water) {

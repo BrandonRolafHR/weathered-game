@@ -198,6 +198,7 @@ export class waterScene extends Scene {
             // OF: console.log("Pagina's van player:", this.player.pageCount);
         } else {
             console.log("Speler is nog niet aangemaakt!");
+            
         }
     }
 }

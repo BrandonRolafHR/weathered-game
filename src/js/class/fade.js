@@ -37,7 +37,7 @@ export async function fadeToScene(engine, sceneName) {
 
   if (player) {
     PlayerState.x = player.pos.x;
-    PlayerState.y = player.pos.y;
+    // PlayerState.y = player.pos.y;
     PlayerState.health = player.health;
   }
 
