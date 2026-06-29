@@ -22,8 +22,6 @@ const Resources = {
     Branch: new ImageSource('images/branch.png'),
     Box: new ImageSource('images/box.png'),
     MetalSheet: new ImageSource('images/metalsheet.png'),
-    Jump: new ImageSource('images/bassieSpring.png'),
-    Sprint: new ImageSource('images/bassieSprint.png'),
 
     ThunderBackground: new ImageSource('images/thunder-background.png'),
     ThunderPlatform: new ImageSource('images/thunder-platform.png'),

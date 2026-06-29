@@ -16,7 +16,6 @@ export class Game extends Engine {
   body = document.body;
   showingPage = false;
   ui;
-  
 
   constructor() {
     super({
@@ -42,9 +41,8 @@ export class Game extends Engine {
       'thunderscene',
       'waterscene'
     ]);
+    
   }
-
-  
 
   async init() {
     await this.start(ResourceLoader);
