@@ -64,7 +64,6 @@ export class Player extends Actor {
         this.onTheGround = true;
     }
 
-<<<<<<< Updated upstream
     onActivate() {
         this.pageCount = PlayerState.pageCount
     }
@@ -90,8 +89,6 @@ export class Player extends Actor {
                 this.onFinnish()
             }
     }
-=======
->>>>>>> Stashed changes
 
     
     onCollisionStart(event, other, engine) {
