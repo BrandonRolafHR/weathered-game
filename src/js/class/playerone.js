@@ -16,7 +16,6 @@ export class PlayerOne extends Player {
 
     onInitialize(engine) {
         super.onInitialize(engine)
-<<<<<<< Updated upstream
 
         this.playerone = Resources.PlayerOne.toSprite();
 
@@ -31,14 +30,6 @@ export class PlayerOne extends Player {
     }
 
     onPreUpdate(engine, delta) {
-
-        if (engine.input.keyboard.wasPressed(Keys.ArrowUp) && this.onTheGround || engine.input.keyboard.wasPressed(Keys.W) && this.onTheGround) {
-            this.body.applyLinearImpulse(new Vector(0, -350 * delta));
-=======
-        this.pos = new Vector(PlayerState.x, 500);
-    }
-
-    onPreUpdate(engine, delta) {
         if (engine.input.keyboard.wasPressed(Keys.ArrowUp) && this.onTheGround) {
             this.body.applyLinearImpulse(new Vector(0, -5000));
             this.onTheGround = false;
@@ -47,7 +38,6 @@ export class PlayerOne extends Player {
                 j.flipHorizontal = this.facingRight;
                 this.graphics.use(j);
             }
->>>>>>> Stashed changes
         }
 
         if (engine.input.keyboard.isHeld(Keys.ArrowRight) || engine.input.keyboard.isHeld(Keys.D)) {
@@ -85,7 +75,6 @@ export class PlayerOne extends Player {
             this.onFinnish()
         }
     }
-
 
     onCollisionStart(event, other) {
         if (other.owner instanceof Barrier || other.owner instanceof Platform) {

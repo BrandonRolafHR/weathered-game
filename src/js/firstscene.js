@@ -35,7 +35,6 @@ export class FirstScene extends Scene {
     }
 
     startGame() {
-<<<<<<< Updated upstream
         //add player
         this.player = new PlayerOne()
         this.add(this.player)
@@ -46,8 +45,6 @@ export class FirstScene extends Scene {
 
         this.checkPages()
 
-=======
->>>>>>> Stashed changes
         const loadBarrier = new Barrier();
         this.add(loadBarrier);
 
@@ -60,11 +57,10 @@ export class FirstScene extends Scene {
         loadBackground2.pos = new Vector(1280, 0)
         this.add(loadBackground2);
 
-<<<<<<< Updated upstream
         const loadBackground3 = new Background();
         loadBackground3.pos = new Vector(2560, 0)
         this.add(loadBackground3);
-=======
+
         //add player
         const player = new PlayerOne()
         this.add(player)
@@ -75,7 +71,6 @@ export class FirstScene extends Scene {
 
         const branch = new Branch(500, 400);
         this.add(branch);
->>>>>>> Stashed changes
 
         //load grounds
         const loadGround1 = new Ground();
@@ -185,15 +180,7 @@ export class FirstScene extends Scene {
         } else if (this.pages === 4) {
             const newspaper5 = new Newspaper(1220, 80);
             this.add(newspaper5);
-        }
-
-        
-
-        
-
-        
-
-        
+        }   
     }
 
     checkPages() {
