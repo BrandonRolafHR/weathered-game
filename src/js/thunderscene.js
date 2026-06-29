@@ -13,13 +13,14 @@ import { Background } from './class/background.js';
 import { Ground } from './class/ground.js';
 import { Newspaper } from "./class/Newspaper";
 import { Platform } from "./class/platfrom";
-
+import { BarrierWall } from './class/barrierwall.js';
 export class ThunderScene extends Scene {
     pages = 0;
 
     onActivate() {
         this.clear();
         this.startGame();
+        this.add(new BarrierWall());
 
         this.HealthBar = new HealthBar();
         this.add(this.HealthBar);

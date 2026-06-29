@@ -8,7 +8,7 @@ import { HealthBar } from "./class/HealthBar";
 import { Newspaper } from "./class/Newspaper";
 import { Platform } from "./class/platfrom";
 import { Resources } from "./resources";
-
+import { BarrierWall } from "./class/barrierwall";
 export class waterScene extends Scene {
     pages = 0
 
@@ -20,6 +20,8 @@ export class waterScene extends Scene {
     onActivate() {
         Resources.WaterScene.loop = true;
         Resources.WaterScene.play();
+        this.add(new BarrierWall());
+    
     }
     onDeactivate() {
         Resources.WaterScene.stop();

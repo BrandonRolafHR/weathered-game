@@ -14,6 +14,7 @@ import { HealthBar } from './class/HealthBar.js';
 import { Platform } from './class/platfrom.js';
 import { PlayerState } from './class/playerstate.js';
 import { Sound } from 'excalibur';
+import { BarrierWall } from './class/barrierwall.js';
 
 export class FirstScene extends Scene {
     player;
@@ -21,6 +22,8 @@ export class FirstScene extends Scene {
 
     onActivate(engine) {
         this.clear();
+
+        this.add(new BarrierWall());
 
         this.HealthBar = new HealthBar();
         this.add(this.HealthBar);

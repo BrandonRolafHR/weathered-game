@@ -16,6 +16,7 @@ import { Barrier } from './class/barrier.js';
 import { HealthBar } from './class/HealthBar.js';
 import { Newspaper } from "./class/Newspaper";
 import { Platform } from "./class/platfrom";
+import { BarrierWall } from './class/barrierwall.js';
 
 class HurricaneBackground extends Actor {
     constructor() {
@@ -169,6 +170,7 @@ export class HurricaneScene extends Scene {
     pages = 0;
 
     onActivate() {
+        this.add(new BarrierWall());
 
         Resources.HurricaneScene.loop = true;
         Resources.HurricaneScene.play();
