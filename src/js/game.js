@@ -58,10 +58,16 @@ export class Game extends Engine {
     // this.goToScene('hurricanescene');
   }
 
+  pausePage(){
+    this.isPaused = !this.isPaused
+    this.timescale = this.isPaused ? 0 : 1
+  }
+
   pause() {
     //CODE VAN SIEBE & AANGEPAST DOOR BERTAN, ZODAT JE ECHT DE OPTIE PANEL ZIET.
     this.isPaused = !this.isPaused;
     this.timescale = this.isPaused ? 0 : 1;
+
 
     const gameContainer = document.getElementById('game-container');
 
