@@ -10,13 +10,14 @@ import { HurricaneScene } from './hurricanescene.js';
 import { LevelSwitcher } from './levelswitcher.js';
 import { fadeToScene } from './class/fade.js';
 import { Player } from './class/player.js';
+import { PlayerState } from './class/playerstate.js';
 
 export class Game extends Engine {
   isPaused = false;
   body = document.body;
   showingPage = false;
   ui;
-  
+
 
   constructor() {
     super({
@@ -44,7 +45,7 @@ export class Game extends Engine {
     ]);
   }
 
-  
+
 
   async init() {
     await this.start(ResourceLoader);
@@ -58,9 +59,44 @@ export class Game extends Engine {
   }
 
   pause() {
-    this.isPaused = !this.isPaused
-    this.timescale = this.isPaused ? 0 : 1
-    this.isPaused ? this.body.classList.add('paused') : this.body.classList.remove('paused')
+    //CODE VAN SIEBE & AANGEPAST DOOR BERTAN, ZODAT JE ECHT DE OPTIE PANEL ZIET.
+    this.isPaused = !this.isPaused;
+    this.timescale = this.isPaused ? 0 : 1;
+
+    const gameContainer = document.getElementById('game-container');
+
+    if (gameContainer) {
+        this.isPaused
+            ? gameContainer.classList.add('paused')
+            : gameContainer.classList.remove('paused');
+    }
+
+    const optionsPanel = document.getElementById('options-panel');
+
+    if (optionsPanel) {
+        if (this.isPaused) {
+            optionsPanel.classList.remove('hidden');
+        } else {
+            optionsPanel.classList.add('hidden');
+        }
+    }
+
+
+    //CODE VAN SIEBE
+    // this.isPaused = !this.isPaused
+    // this.timescale = this.isPaused ? 0 : 1
+    // this.isPaused ? this.body.classList.add('paused') : this.body.classList.remove('paused')
+
+    // CODE VAN BERTAN
+    // const optionsPanel = document.getElementById('options-panel');
+
+    // if (optionsPanel) {
+    //     if (this.isPaused) {
+    //         optionsPanel.classList.remove('hidden');
+    //     } else {
+    //         optionsPanel.classList.add('hidden');
+    //     }
+    // }
   }
 
 
@@ -69,15 +105,14 @@ export class Game extends Engine {
       this.pause()
     }
 
-    if(this.showingPage && this.input.keyboard.wasPressed(Keys.Space)) {
+    if (this.showingPage && this.input.keyboard.wasPressed(Keys.Space)) {
       this.pause()
       this.showingPage = false;
       this.levelSwitcher.startTimer()
-      
+
       const speler = game.currentScene.actors.find(Actor => Actor instanceof Player)
-      if(speler.pageCount === 5) {
+      if (PlayerState.pageCount >= 5) {
         speler.onFinnish()
-        console.log("speel video af")
       }
     }
 

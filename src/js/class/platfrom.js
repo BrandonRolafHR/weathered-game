@@ -1,21 +1,26 @@
-import { Actor, Vector, CollisionType } from "excalibur"
-import { Resources } from '../resources.js'
+import { Actor, CollisionType } from "excalibur";
+import { Resources } from "../resources.js";
 
 export class Platform extends Actor {
-    constructor(x, y, size) {
+
+    constructor(x, y, width = 200, height = 40) {
         super({
             x: x,
             y: y,
-            width: Resources.Platform.width,
-            height: Resources.Platform.height
-        })
+            width: width,
+            height: height,
+        });
 
-        this.body.collisionType = CollisionType.Fixed
+        this.body.collisionType = CollisionType.Fixed;
     }
 
-    onInitialize(){
-        this.graphics.use(Resources.Platform.toSprite())
-        
-        this.scale = new Vector(0.5, 0.5)
+    onInitialize() {
+
+        const sprite = Resources.Platform.toSprite();
+
+        sprite.width = this.width;
+        sprite.height = this.height;
+
+        this.graphics.use(sprite);
     }
 }

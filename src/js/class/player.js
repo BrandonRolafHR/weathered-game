@@ -36,7 +36,7 @@ export class Player extends Actor {
             grid: {
                 rows: 1,
                 columns: 8,
-                spriteWidth: 190,
+                spriteWidth: 192.5,
                 spriteHeight: 1024,
             }
         });
@@ -73,6 +73,9 @@ export class Player extends Actor {
 
     onPreUpdate(engine, delta) {
 
+          if (PlayerState.pageCount >= 5) {
+            this.onFinnish()
+        }
         if (engine.input.keyboard.wasPressed(Keys.ArrowUp) && this.onTheGround || engine.input.keyboard.wasPressed(Keys.W) && this.onTheGround) {
             this.body.applyLinearImpulse(new Vector(0, -3500));
         }
@@ -85,11 +88,6 @@ export class Player extends Actor {
         }
         else {
             this.vel = new Vector(0, this.vel.y)
-        }
-
-        //video afspelen
-        if (this.pageCount === 5) {
-            this.onFinnish()
         }
     }
 
@@ -173,6 +171,7 @@ export class Player extends Actor {
             this.videoPlayer.currentTime = 0
             // this.videoOverlay.classList.remove('video-play')
             this.videoOverlay.style.display = 'none'
-        }, 3000)
+            this.scene.engine.goToScene("start")
+        }, 5000)
     }
 }

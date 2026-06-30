@@ -80,17 +80,23 @@ export class PlayerOne extends Player {
             this.graphics.use(j2);
         }
 
-        //video afspelen
-        if (this.pageCount === 5) {
-            this.onFinnish()
-        }
+
     }
 
     onCollisionStart(event, other) {
-        if (other.owner instanceof Barrier || other.owner instanceof Platform) {
+    if (other.owner instanceof Barrier || other.owner instanceof Platform) {
+
+        const playerBottom = this.pos.y + this.height / 2;
+        const platformTop = other.owner.pos.y - other.owner.height / 2;
+
+        const isLandingOnTop =
+            this.vel.y >= 0 &&
+            playerBottom <= platformTop + 25;
+
+        if (isLandingOnTop) {
             this.onTheGround = true;
-            this.graphics.use(this.playerone);
         }
+    }
 
         if (other.owner instanceof Newspaper) {
             Resources.Pickup.play();
@@ -113,4 +119,4 @@ export class PlayerOne extends Player {
             this.onTheGround = false;
         }
     }
-}
+}   

@@ -1,9 +1,10 @@
-import { Actor, CollisionType, Vector} from 'excalibur';
+import { Actor, CollisionType, Vector } from 'excalibur';
 import { Resources } from '../resources.js'
 import { Page } from './page.js'
+import { PlayerState } from './playerstate.js';
 
 export class Newspaper extends Actor {
-    constructor(x, y) {
+  constructor(x, y) {
     super({
       x,
       y,
@@ -16,6 +17,8 @@ export class Newspaper extends Actor {
 
   showPage(pageCount) {
     console.log(`Page ${pageCount} of the newspaper is shown.`);
+    console.log("PlayerState.pageCount:", PlayerState.pageCount);
+
     this.scene.engine.showingPage = true;
     this.scene.engine.pause();
     this.scene.engine.body.classList.remove('paused');
@@ -23,6 +26,5 @@ export class Newspaper extends Actor {
     this.scene.add(new Page(pageCount));
     this.kill();
   }
-
 }
 

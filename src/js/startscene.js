@@ -2,11 +2,12 @@ import { Scene } from 'excalibur';
 import { startMenuAnimation, stopMenuAnimation } from './startsceneCanvas.js';
 import { Resources } from './resources.js';
 
+let soundOn = true;
+
 export class StartScene extends Scene {
   async onActivate() {
 
     document.getElementById('scene').style.display = 'block';
-    let soundOn = true;
 
     Resources.StartScene.loop = true;
     Resources.StartScene.play();
@@ -46,15 +47,20 @@ document.getElementById('btn-fullscreen').addEventListener('click', async () => 
 
 // Toggle game sound on/off
 document.getElementById('btn-sound').addEventListener('click', () => {
-  soundOn = !soundOn;
+    soundOn = !soundOn;
 
-  document.getElementById('btn-sound').textContent = soundOn
-    ? 'Sound: ON'
-    : 'Sound: OFF';
+    document.getElementById('btn-sound').textContent =
+        soundOn ? 'Sound: ON' : 'Sound: OFF';
 
-  document.dispatchEvent(new CustomEvent('toggle-sound', {
-    detail: { soundOn }
-  }));
+    if (soundOn) {
+        Resources.StartScene.play();
+    } else {
+        Resources.StartScene.stop();
+    }
+
+    document.dispatchEvent(new CustomEvent('toggle-sound', {
+        detail: { soundOn }
+    }));
 });
 
 // Close the game (browser restrictions may prevent this)
